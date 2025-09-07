@@ -11,34 +11,31 @@
 </head>
 
 <body>
+
+    <a href="../index.html" class="back-arrow">&#8592; Inicio</a>
+    
     <div class="contenedor-principal">
-        <form class="form-register" action="../index.html">
-            <a href="../index.html">
-                <img src="../images/icon.ico" alt="Icono Betanito 2.0" width=20%>
-            </a>
-            
-            <h3>Te damos la bienvenida a Betanito</h3>
-            
-            <input class="controls" type="text" name="Nombre" id="Nombres" placeholder="Nombre" required>
-            
-            <input class="controls" type="text" name="Apellido" id="Apellidos" placeholder="Apellido" required>
-            
-            <input class="controls" type="date" name="Edad" id="Edades" max="2006-09-28" required> 
-            
-            <input class="controls" type="text" name="RUT" id="RUT" placeholder="RUT (sin guión ni puntos)" pattern="[0-9kK]{7,9}" title="Solo números y la letra K (7 a 9 caracteres)" required>
-            
-            <input class="controls" type="email" name="Correo Electronico" id="Correos" placeholder="Correo Electrónico" required>
-            
-            <input class="controls" type="password" name="Contraseña" id="Contraseñas" placeholder="Contraseña" required>
-            
-            <input class="controls" type="password" name="Contraseña-Confirm" id="Contraseñas-Confirm" placeholder="Confirmar Contraseña" required>
-            
-            <p>Al registrarse aceptas los <a href="../info/tos.html">Términos y condiciones</a> de Betanito</p>
-            
-            <input class="botons" type="submit" value="Registrar">
-            
-            <p>¿Ya tienes una cuenta? <a href="./login.html">Inicia sesión aquí</a></p>
-        </form>
+        <form class="form-register" action="../account/profile.html" method="get">
+    <a href="../index.html">
+        <img src="../images/icon.ico" alt="Icono Betanito 2.0" width="20%">
+    </a>
+    
+    <h3>Te damos la bienvenida a Betanito</h3>
+    
+    <input class="controls" type="text" name="Nombre" id="Nombres" placeholder="Nombre">
+    <input class="controls" type="text" name="Apellido" id="Apellidos" placeholder="Apellido">
+    <input class="controls" type="date" name="Edad" id="Edades" max="2006-09-28"> 
+    <input class="controls" type="text" name="RUT" id="RUT" placeholder="RUT (sin guión ni puntos)" pattern="[0-9kK]{7,9}" title="Solo números y la letra K (7 a 9 caracteres)" >
+    <input class="controls" type="email" name="Correo Electronico" id="Correos" placeholder="Correo Electrónico">
+    <input class="controls" type="password" name="Contraseña" id="Contraseñas" placeholder="Contraseña">
+    <input class="controls" type="password" name="Contraseña-Confirm" id="Contraseñas-Confirm" placeholder="Confirmar Contraseña">
+    
+    <p>Al registrarse aceptas los <a href="../info/tos.html">Términos y condiciones</a> de Betanito</p>
+    
+    <input class="botons-iniciar-sesion" type="submit" value="Registrar">
+    
+    <p>¿Ya tienes una cuenta? <a href="./login.html">Inicia sesión aquí</a></p>
+</form>
     </div>
     
     <footer>
