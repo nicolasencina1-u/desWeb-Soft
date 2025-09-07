@@ -39,6 +39,7 @@ header {
     padding:                15px 40px;
     position:               sticky;
     top:                    0;
+    z-index:                1000;
 }
 
 footer {
@@ -179,24 +180,24 @@ main {
 }
 
 .contenido-derecho {
-    position: relative;        /* contenedor relativo */
-    width: 100%;
-    height: 100%;              /* o altura deseada */
-    overflow: hidden;          /* recorta si es necesario */
+    position:               relative;
+    width:                  100%;
+    height:                 100%;
+    overflow:               hidden;
 }
 
 .contenido-derecho img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;         /* equivalente a background-size: cover */
-    transform: translate(-50%, -50%); /* centra la imagen */
+    position:               absolute;
+    top:                    50%;
+    left:                   50%;
+    width:                  100%;
+    height:                 100%;
+    object-fit:             cover;
+    transform:              translate(-50%, -50%);
 }
 
 .saldo {
-    color: #0A8754;
+    color:                  #0A8754;
 }
 
 
@@ -205,85 +206,86 @@ main {
 
 /* ============ LOGIN / REGISTER ============ */
 
-/* FORMULARIO DE LOGIN / REGISTER */
 .form-register {
-    width: 100%;
-    max-width: 450px;
-    background: #1a1a1a;
-    padding: 40px;
-    margin: 40px auto;
-    border-radius: 10px;
-    border: 1px solid #333;
-    color: #fff;
-    text-align: center;
+    width:                  100%;
+    max-width:              450px;
+    background:             #1a1a1a;
+    padding:                40px;
+    margin:                 40px auto;
+    border-radius:          10px;
+    border-width:           1px;
+    border-style:           solid;
+    border-color:           #333333;
+    color:                  #ffffff;
+    text-align:             center;
 }
 
 .form-register h3 {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 28px;
-    margin-bottom: 30px;
-    text-align: center;
-    color: #e6b800;
+    font-family:            'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:              28px;
+    margin-bottom:          30px;
+    text-align:             center;
+    color:                  #e6b800;
 }
 
 .form-register p {
-    margin: 20px 0 10px 0;
-    font-size: 15px;
+    margin:                 20px 0 10px 0;
+    font-size:              15px;
 }
 
 .form-register a {
-    color: #e6b800;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    color:                  #e6b800;
+    text-decoration:        none;
+    font-weight:            bold;
+    transition:             color 0.3s ease;
 }
 
 .form-register a:hover {
-    color: #ffcc00;
-    text-decoration: underline;
+    color:                  #ffcc00;
+    text-decoration:        underline;
 }
 
 .controls {
-    width: 100%;
-    background: #0d0d0d;
-    padding: 14px;
-    border-radius: 8px;
-    border-width: 1px;
-    border-style: solid; 
-    border-color: #333333;
-    margin-bottom: 20px;
-    font-size: 16px;
-    color: #fff;
+    width:                  100%;
+    background:             #0d0d0d;
+    padding:                14px;
+    border-radius:          8px;
+    border-width:           1px;
+    border-style:           solid; 
+    border-color:           #333333;
+    margin-bottom:          20px;
+    font-size:              16px;
+    color:                  #ffffff;
 }
 
 .controls::placeholder {
-    color: #ffffff;
-    opacity: 0.8;
+    color:                  #ffffff;
+    opacity:                0.8;
 }
 
 .controls:focus {
-    outline: none;
-    border-color: #e6b800;
-    box-shadow: 0 0 3px rgba(230, 184, 0, 0.3);
+    outline:                none;
+    border-color:           #e6b800;
+    box-shadow:             0 0 3px rgba(230, 184, 0, 0.3);
 }
 
 .botons {
-    width: 100%;
-    background: #e6b800;
-    border: none;
-    padding: 15px;
-    color: #000;
-    margin: 25px 0 15px 0;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width:                  100%;
+    background:             #e6b800;
+    border:                 none;
+    padding:                15px;
+    color:                  #000000;
+    margin:                 25px 0 15px 0;
+    font-size:              18px;
+    font-weight:            bold;
+    border-radius:          8px;
+    cursor:                 pointer;
+    transition:             all 0.3s ease;
 }
 
 .botons:hover {
-    background: #ffcc00;
-    transform: translateY(-2px);
+    background:             #ffcc00;
+    transform:              translateY(-2px);
 }
 
 
@@ -346,3 +348,4 @@ main {
         width: 100%;
     }
 }
+
