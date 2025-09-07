@@ -1,3 +1,10 @@
+:root {
+  --green: #0A8754;
+  --red: 0;
+  --yellow: #e6b800;
+  --yellow-alt: #ffcc00;
+}
+
 * {
     box-sizing:     border-box;
     font-family:    'Arial', sans-serif;
@@ -81,18 +88,18 @@ footer {
 }
 
 .nav-actual {
-    color:                  #0A8754;
+    color:                  var(--green);
     font-size:              1.1rem;
     font-weight:            bold;
     position:               relative;
 }
 
 .menu-principal a:hover {
-    color:                  #e6b800;
+    color:                  var(--yellow);
 }
 
 .menu-principal a::after {
-    background:             #e6b800;
+    background:             var(--yellow);
     bottom:                 0;
     content:                '';
     position:               absolute;
@@ -122,13 +129,13 @@ footer {
 }
 
 .btn-registro, .btn-acceso {
-    background:             #e6b800;
+    background:             var(--yellow);
     color:                  #000000;
     min-width:              100px;
 }
 
 .btn-registro:hover, .btn-acceso:hover {
-    background:             #ffcc00;
+    background:             var(--yellow-alt);
     transform:              translateY(-2px);
 }
 
@@ -153,7 +160,7 @@ main {
 }
 
 .texto-bienvenida h1 {
-    color:                  #e6b800;
+    color:                  var(--yellow);
     font-size:              2.5rem;
     margin-bottom:          20px;
 }
@@ -166,7 +173,7 @@ main {
 }
 
 .btn-jugar {
-    background:             #e6b800;
+    background:             var(--yellow);
     color:                  #000000;
     padding:                12px 30px;
     font-size:              1.2rem;
@@ -175,7 +182,7 @@ main {
 }
 
 .btn-jugar:hover {
-    background:             #ffcc00;
+    background:             var(--yellow-alt);
     transform:              translateY(-2px);
 }
 
@@ -197,7 +204,7 @@ main {
 }
 
 .saldo {
-    color:                  #0A8754;
+    color:                  var(--green);
 }
 
 
@@ -225,7 +232,7 @@ main {
     font-size:              28px;
     margin-bottom:          30px;
     text-align:             center;
-    color:                  #e6b800;
+    color:                  var(--yellow);
 }
 
 .form-register p {
@@ -234,14 +241,14 @@ main {
 }
 
 .form-register a {
-    color:                  #e6b800;
+    color:                  var(--yellow);
     text-decoration:        none;
     font-weight:            bold;
     transition:             color 0.3s ease;
 }
 
 .form-register a:hover {
-    color:                  #ffcc00;
+    color:                  var(--yellow-alt);
     text-decoration:        underline;
 }
 
@@ -265,13 +272,13 @@ main {
 
 .controls:focus {
     outline:                none;
-    border-color:           #e6b800;
+    border-color:           var(--yellow);
     box-shadow:             0 0 3px rgba(230, 184, 0, 0.3);
 }
 
 .botons {
     width:                  100%;
-    background:             #e6b800;
+    background:             var(--yellow);
     border:                 none;
     padding:                15px;
     color:                  #000000;
@@ -284,7 +291,7 @@ main {
 }
 
 .botons:hover {
-    background:             #ffcc00;
+    background:             var(--yellow-alt);
     transform:              translateY(-2px);
 }
 
@@ -348,4 +355,5 @@ main {
         width: 100%;
     }
 }
+
 
