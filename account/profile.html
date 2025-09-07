@@ -1,11 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="refresh" content="0; url=../index.html">
     <meta charset="UTF-8">
-    <title>Betanito - Perfil</title>
+    <title>Betanito - Perfil de Usuario</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
 </head>
 <body>
+    <div class="contenedor-principal">
+        <header>
+            <div class="logo-nav-container">
+                <a class="logo">
+                    <img src="../images/logo-casino.png" alt="Logo Betanito 2.0">
+                </a>
+                <nav class="menu-principal">
+                    <ul>
+                        <li><a href="../games/european-roulette.html">Mesa de Ruleta</a></li>
+                        
+                        <li><a href="./transactions.html">Transacciones</a></li>
+
+                        <li class="nav-actual">Perfil Usuario</li>
+
+                        <li><a href="./reglas.html">Reglas Ruleta</a></li>
+
+                        <li><a href="./info.html">Informacion App</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="accesos">
+                <a class="btn btn-registro">JUAN PEREZ</a>
+                <a href="../index.html" class="btn btn-acceso">Cerrar Sesión</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="contenido-izquierdo">
+                <div class="texto-bienvenida">
+                    <h1>Perfil de Usuario</h1>
+                    
+                    <!-- Información Personal -->
+                    <div class="seccion-perfil">
+                        <h2>Información Personal</h2>
+                        <div class="info-usuario">
+                            <p><strong>Nombre:</strong> Juan Pérez</p>
+                            <p><strong>RUT:</strong> 12.345.678-9</p>
+                            <p><strong>Email:</strong> juan.perez@email.com</p>
+                            <p><strong>Teléfono:</strong> +56 9 1234 5678</p>
+                        </div>
+                    </div>
+
+                    <!-- Saldo Actual -->
+                    <div class="seccion-perfil">
+                        <h2>Saldo Actual</h2>
+                        <div class="saldo-actual">
+                            <p class="monto-saldo">$64.920 CLP</p>
+                        </div>
+                    </div>
+
+                    <!-- Últimas Transacciones -->
+                    <div class="seccion-perfil">
+                        <h2>Últimas Transacciones</h2>
+                        <div class="tabla-transacciones">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Monto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>15/03/2024</td>
+                                        <td>Depósito</td>
+                                        <td class="monto-positivo">+$20.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14/03/2024</td>
+                                        <td>Apuesta</td>
+                                        <td class="monto-negativo">-$5.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13/03/2024</td>
+                                        <td>Ganancia</td>
+                                        <td class="monto-positivo">+$15.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/03/2024</td>
+                                        <td>Apuesta</td>
+                                        <td class="monto-negativo">-$3.500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11/03/2024</td>
+                                        <td>Depósito</td>
+                                        <td class="monto-positivo">+$30.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contenido-derecho">
+                <img src="../images/fondo-ruleta.jpeg" alt="Imagen de casino">
+            </section>
+        </main>
+
+        <footer>
+            <p>Proyecto académico - 2025</p>
+        </footer>
+    </div>
 </body>
 </html>
