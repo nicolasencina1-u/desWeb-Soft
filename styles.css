@@ -1,0 +1,341 @@
+* {
+    box-sizing:     border-box;
+    font-family:    'Arial', sans-serif;
+    margin:         0;
+    padding:        0;
+}
+
+body {
+    background-color:       #0d0d0d;
+    background-image:       url('./images/fondo-ruleta.jpeg');
+    background-size:        cover;
+    background-position:    center;
+    background-repeat:      no-repeat;
+    background-attachment:  fixed;
+    color:                  #ffffff;
+    display:                flex;
+    flex-direction:         column;
+    line-height:            1.6;
+    min-height:             100vh;
+    min-height:             100svh;
+}
+
+.contenedor-principal {
+    background:             rgba(13, 13, 13, 0.85);
+    display:                flex;
+    flex:                   1;
+    flex-direction:         column;
+    height:                 100%;
+    justify-content:        center;
+}
+
+header {
+    align-items:            center;
+    background:             #1a1a1a;
+    display:                flex;
+    flex-wrap:              wrap;
+    justify-content:        space-between;
+    max-height:             120px;
+    padding:                15px 40px;
+    position:               sticky;
+    top:                    0;
+}
+
+footer {
+    background:             #1a1a1a;
+    bottom:                 0;
+    left:                   0;
+    padding:                20px;
+    text-align:             center;
+    width:                  100%;
+}
+
+.logo-nav-container {
+    align-items:    center;
+    display:        flex;
+    gap:            50px;
+}
+
+.logo img {
+    height: 80px;
+    width:  auto;
+}
+
+
+
+
+
+/* ============ PAGINA DE INICIO ============ */
+
+.menu-principal ul {
+    display:                flex;
+    gap:                    30px;
+    list-style:             none;
+    margin:                 0;
+    padding:                0;
+}
+
+.menu-principal a {
+    color:                  #ffffff;
+    font-size:              1.1rem;
+    font-weight:            bold;
+    padding:                5px 0;
+    position:               relative;
+    text-decoration:        none;
+    transition:             color 0.3s ease;
+}
+
+.menu-principal a:hover {
+    color:                  #e6b800;
+}
+
+.menu-principal a::after {
+    background:             #e6b800;
+    bottom:                 0;
+    content:                '';
+    position:               absolute;
+    left:                   0;
+    width:                  0;
+    height:                 2px;
+    transition:             width 0.3s ease;
+}
+
+.menu-principal a:hover::after {
+    width:                  100%;
+}
+
+.accesos {
+    display:                flex;
+    gap:                    15px;
+}
+
+.btn {
+    display:                inline-block;
+    padding:                10px 20px;
+    font-weight:            bold;
+    text-decoration:        none;
+    border-radius:          8px;
+    text-align:             center;
+    transition:             all 0.3s ease;
+}
+
+.btn-registro, .btn-acceso {
+    background:             #e6b800;
+    color:                  #000000;
+    min-width:              100px;
+}
+
+.btn-registro:hover, .btn-acceso:hover {
+    background:             #ffcc00;
+    transform:              translateY(-2px);
+}
+
+main {
+    display:                grid;
+    grid-template-columns:  40% 60%;
+    min-height:             calc(100vh - 160px);
+}
+
+.contenido-izquierdo {
+    background:             #0d0d0d;
+    padding:                40px;
+    display:                flex;
+    flex-direction:         column;
+    justify-content:        center;
+}
+
+.texto-bienvenida h1 {
+    color:                  #e6b800;
+    font-size:              2.5rem;
+    margin-bottom:          20px;
+}
+
+.texto-bienvenida p {
+    margin-bottom:          20px;
+    font-size:              1.1rem;
+    line-height:            1.7;
+    text-align:             justify;
+}
+
+.btn-jugar {
+    background:             #e6b800;
+    color:                  #000000;
+    padding:                12px 30px;
+    font-size:              1.2rem;
+    margin-top:             20px;
+    align-self:             flex-start;
+}
+
+.btn-jugar:hover {
+    background:             #ffcc00;
+    transform:              translateY(-2px);
+}
+
+.contenido-derecho {
+    position: relative;        /* contenedor relativo */
+    width: 100%;
+    height: 100%;              /* o altura deseada */
+    overflow: hidden;          /* recorta si es necesario */
+}
+
+.contenido-derecho img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* equivalente a background-size: cover */
+    transform: translate(-50%, -50%); /* centra la imagen */
+}
+
+.saldo {
+    color: #0A8754;
+}
+
+
+
+
+
+/* ============ LOGIN / REGISTER ============ */
+
+/* FORMULARIO DE LOGIN / REGISTER */
+.form-register {
+    width: 100%;
+    max-width: 450px;
+    background: #1a1a1a;
+    padding: 40px;
+    margin: 40px auto;
+    border-radius: 10px;
+    border: 1px solid #333;
+    color: #fff;
+    text-align: center;
+}
+
+.form-register h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #e6b800;
+}
+
+.form-register p {
+    margin: 20px 0 10px 0;
+    font-size: 15px;
+}
+
+.form-register a {
+    color: #e6b800;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.form-register a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+}
+
+.controls {
+    width: 100%;
+    background: #0d0d0d;
+    padding: 14px;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid; 
+    border-color: #333333;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.controls::placeholder {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
+.controls:focus {
+    outline: none;
+    border-color: #e6b800;
+    box-shadow: 0 0 3px rgba(230, 184, 0, 0.3);
+}
+
+.botons {
+    width: 100%;
+    background: #e6b800;
+    border: none;
+    padding: 15px;
+    color: #000;
+    margin: 25px 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botons:hover {
+    background: #ffcc00;
+    transform: translateY(-2px);
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .logo-nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .menu-principal ul {
+        gap: 15px;
+    }
+    
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 400px;
+    }
+    
+    .contenido-izquierdo {
+        order: 2;
+        padding: 30px 20px;
+    }
+    
+    .contenido-derecho {
+        order: 1;
+    }
+    
+    .btn-jugar {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-principal ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .accesos {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-registro, .btn-acceso {
+        width: 100%;
+    }
+}
