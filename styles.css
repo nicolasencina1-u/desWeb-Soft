@@ -51,21 +51,15 @@ footer {
 }
 
 .logo-nav-container {
-    align-items:    center;
-    display:        flex;
-    gap:            50px;
+    align-items:            center;
+    display:                flex;
+    gap:                    50px;
 }
 
 .logo img {
-    height: 80px;
-    width:  auto;
+    height:                 80px;
+    width:                  auto;
 }
-
-
-
-
-
-/* ============ PAGINA DE INICIO ============ */
 
 .menu-principal ul {
     display:                flex;
@@ -83,6 +77,13 @@ footer {
     position:               relative;
     text-decoration:        none;
     transition:             color 0.3s ease;
+}
+
+.nav-actual {
+    color:                  #0A8754;
+    font-size:              1.1rem;
+    font-weight:            bold;
+    position:               relative;
 }
 
 .menu-principal a:hover {
@@ -129,6 +130,12 @@ footer {
     background:             #ffcc00;
     transform:              translateY(-2px);
 }
+
+
+
+
+
+/* ============ PAGINA DE INICIO ============ */
 
 main {
     display:                grid;
