@@ -2,89 +2,52 @@
 <html lang="es">
 <head>    
     <meta charset="UTF-8">
-    
     <title>Betanito - Ruleta</title>
-    
     <link rel="stylesheet" href="../styles.css">
-    
     <link rel="icon" href="../images/icon.ico" type="image/x-icon">
+    <style>
+        /* Main como contenedor relativo */
+        main {
+            position: relative;
+        }
+        /* Imagen que cubre todo el espacio disponible */
+        .mesa-ruleta {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+        }
+    </style>
 </head>
 
 <body>
     <div class="contenedor-principal">
         <header>
             <div class="logo-nav-container">
-                <a class="logo" href="../index.html">
+                <a class="logo" href="../account/profile.html">
                     <img src="../images/logo-casino.png" alt="Logo Betanito 2.0">
                 </a>
 
                 <nav class="menu-principal">
                     <ul>
-                        <li><a href="../index.html">Inicio</a></li>
-                        
-                        <li><a href="../info/app.html">Información de la App</a></li>
-                        
-                        <li><a href="../info/roulette-rules.html">Reglas de la Ruleta</a></li>
-                        
                         <li class="nav-actual">Mesa de Ruleta</li>
-                        
                         <li><a href="../account/transactions.html">Transacciones</a></li>
+                        <li><a href="../account/profile.html">Perfil de usuario</a></li>
                     </ul>
                 </nav>
             </div>
 
             <div class="accesos">
-                <a href="../account/register.html" class="btn btn-registro">Registro</a>
-
-                <a href="../account/login.html" class="btn btn-acceso">Inicio Sesion</a>
+                <a class="btn btn-registro">JUAN PEREZ</a>
+                <a href="../index.html" class="btn btn-acceso">Cerrar Sesion</a>
             </div>
         </header>
 
         <main>
-            <section class="contenido-izquierdo">
-                <div class="texto-bienvenida">
-                    <h1>Mesa de Ruleta Europea</h1>
-
-                    <h2>Estado: <span id="estado">Recibiendo apuestas</span></h2>
-
-                    <h2>Saldo disponible: <span id="saldo">$64.920 CLP</span></h2>
-
-                    <h3>Últimos 5 números ganadores</h3>
-                    
-                    <ul id="ultimos-numeros">
-                        <li>23 (Rojo)</li>
-                        
-                        <li>0 (Verde)</li>
-                        
-                        <li>12 (Rojo)</li>
-                        
-                        <li>8 (Negro)</li>
-                        
-                        <li>31 (Negro)</li>
-                    </ul>
-
-                    <h3>Últimas 5 apuestas</h3>
-                    
-                    <ul id="ultimas-apuestas">
-                        <li>Pleno al 7 - $50 - Ganó +$1750</li>
-                        
-                        <li>Rojo - $100 - Perdió -$100</li>
-                        
-                        <li>Par - $200 - Ganó +$200</li>
-                        
-                        <li>Negro - $150 - Perdió -$150</li>
-                        
-                        <li>Pleno al 0 - $20 - Perdió -$20</li>
-                    </ul>
-
-                    <a href="../account/profile.html" class="btn btn-jugar">Volver a mi perfil</a>
-                </div>
-            </section>
-
-            <section class="contenido-derecho">
-                <!-- poner foto de mesa de ruleta -->
-                <img src="../images/fondo-casino.jpg" alt="Mesa de Ruleta Europea">
-            </section>
+            <!-- Imagen de la ruleta que cubre todo el main -->
+            <img src="../images/juego-ruleta - copia.png" alt="Mesa de Ruleta Europea" class="mesa-ruleta">
         </main>
     </div>
 
@@ -93,3 +56,4 @@
     </footer>
 </body>
 </html>
+
