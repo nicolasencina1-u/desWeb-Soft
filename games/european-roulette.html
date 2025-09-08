@@ -1,16 +1,19 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>    
     <meta charset="UTF-8">
-    <title>Betanito - Ruleta</title>
+    
+    <title>Ruleta - Betanito</title>
+    
     <link rel="stylesheet" href="../styles.css">
+    
     <link rel="icon" href="../images/icon.ico" type="image/x-icon">
+    
     <style>
-        /* Main como contenedor relativo */
         main {
             position: relative;
         }
-        /* Imagen que cubre todo el espacio disponible */
         .mesa-ruleta {
             position: absolute;
             top: 0;
@@ -26,27 +29,35 @@
     <div class="contenedor-principal">
         <header>
             <div class="logo-nav-container">
-                <a class="logo" href="../account/profile.html">
+                <a class="logo" href="../index.html">
                     <img src="../images/logo-casino.png" alt="Logo Betanito 2.0">
                 </a>
-
+                
                 <nav class="menu-principal">
                     <ul>
-                        <li class="nav-actual">Mesa de Ruleta</li>
+                        <li><a href="../index.html">Inicio</a></li>
+
+                        <li class="nav-actual">Ruleta</li>
+
                         <li><a href="../account/transactions.html">Transacciones</a></li>
-                        <li><a href="../account/profile.html">Perfil de usuario</a></li>
+
+                        <li><a href="../info/app.html">Información de la App</a></li>
+                        
+                        <li><a href="../info/roulette-rules.html">Reglas de la Ruleta</a></li>
                     </ul>
                 </nav>
             </div>
 
             <div class="accesos">
-                <a class="btn btn-registro">JUAN PEREZ</a>
-                <a href="../index.html" class="btn btn-acceso">Cerrar Sesion</a>
+                <a href="../account/profile.html" class="btn btn-perfil">Perfil</a>
+
+                <a href="../account/register.html" class="btn btn-registro">Registro</a>
+
+                <a href="../account/login.html" class="btn btn-acceso">Inicio Sesion</a>
             </div>
         </header>
 
         <main>
-            <!-- Imagen de la ruleta que cubre todo el main -->
             <img src="../images/juego-ruleta - copia.png" alt="Mesa de Ruleta Europea" class="mesa-ruleta">
         </main>
     </div>
@@ -56,4 +67,3 @@
     </footer>
 </body>
 </html>
-

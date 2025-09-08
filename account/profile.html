@@ -1,35 +1,44 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Betanito - Perfil de Usuario</title>
+    
+    <title>Perfil de Usuario - Betanito</title>
+    
     <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    
+    <link rel="icon" href="../images/icon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="contenedor-principal">
         <header>
             <div class="logo-nav-container">
-                <a class="logo">
+                <a class="logo" href="../index.html">
                     <img src="../images/logo-casino.png" alt="Logo Betanito 2.0">
                 </a>
+                
                 <nav class="menu-principal">
                     <ul>
-                        <li><a href="../games/european-roulette.html">Mesa de Ruleta</a></li>
-                        
+                        <li><a href="../index.html">Inicio</a></li>
+
+                        <li><a href="../games/european-roulette.html">Ruleta</a></li>
+
                         <li><a href="./transactions.html">Transacciones</a></li>
 
-                        <li class="nav-actual">Perfil Usuario</li>
-
-                        <li><a href="./reglas.html">Reglas Ruleta</a></li>
-
-                        <li><a href="./info.html">Informacion App</a></li>
+                        <li><a href="../info/app.html">Información de la App</a></li>
+                        
+                        <li><a href="../info/roulette-rules.html">Reglas de la Ruleta</a></li>
                     </ul>
                 </nav>
             </div>
+
             <div class="accesos">
-                <a class="btn btn-registro">JUAN PEREZ</a>
-                <a href="../index.html" class="btn btn-acceso">Cerrar Sesión</a>
+                <a href="./profile.html" class="btn btn-perfil">Perfil</a>
+
+                <a href="./register.html" class="btn btn-registro">Registro</a>
+
+                <a href="./login.html" class="btn btn-acceso">Inicio Sesion</a>
             </div>
         </header>
 
@@ -38,61 +47,81 @@
                 <div class="texto-bienvenida">
                     <h1>Perfil de Usuario</h1>
                     
-                    <!-- Información Personal -->
                     <div class="seccion-perfil">
                         <h2>Información Personal</h2>
+                        
                         <div class="info-usuario">
                             <p><strong>Nombre:</strong> Juan Pérez</p>
+                            
                             <p><strong>RUT:</strong> 12.345.678-9</p>
+                            
                             <p><strong>Email:</strong> juan.perez@email.com</p>
+                            
                             <p><strong>Teléfono:</strong> +56 9 1234 5678</p>
                         </div>
                     </div>
 
-                    <!-- Saldo Actual -->
                     <div class="seccion-perfil">
                         <h2>Saldo Actual</h2>
+                        
                         <div class="saldo-actual">
                             <p class="monto-saldo">$64.920 CLP</p>
                         </div>
                     </div>
 
-                    <!-- Últimas Transacciones -->
                     <div class="seccion-perfil">
                         <h2>Últimas Transacciones</h2>
+                        
                         <div class="tabla-transacciones">
                             <table>
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
+                                        
                                         <th>Tipo</th>
+                                        
                                         <th>Monto</th>
                                     </tr>
                                 </thead>
+                                
                                 <tbody>
                                     <tr>
-                                        <td>15/03/2024</td>
+                                        <td>15/03/2025</td>
+                                        
                                         <td>Depósito</td>
+                                        
                                         <td class="monto-positivo">+$20.000</td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td>14/03/2024</td>
+                                        <td>14/03/2025</td>
+                                        
                                         <td>Apuesta</td>
+                                        
                                         <td class="monto-negativo">-$5.000</td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td>13/03/2024</td>
+                                        <td>13/03/2025</td>
+                                        
                                         <td>Ganancia</td>
+                                        
                                         <td class="monto-positivo">+$15.000</td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td>12/03/2024</td>
+                                        <td>12/03/2025</td>
+                                        
                                         <td>Apuesta</td>
+                                        
                                         <td class="monto-negativo">-$3.500</td>
                                     </tr>
+                                    
                                     <tr>
-                                        <td>11/03/2024</td>
+                                        <td>11/03/2025</td>
+                                        
                                         <td>Depósito</td>
+                                        
                                         <td class="monto-positivo">+$30.000</td>
                                     </tr>
                                 </tbody>

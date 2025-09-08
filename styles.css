@@ -77,6 +77,15 @@ footer {
     padding:                0;
 }
 
+.nav-actual {
+    color:                  var(--green);
+    font-size:              1.1rem;
+    font-weight:            bold;
+    position:               relative;
+    border-bottom:          2px solid var(--green);
+    text-underline-offset: 4px;
+}
+
 .menu-principal a {
     color:                  #ffffff;
     font-size:              1.1rem;
@@ -85,13 +94,6 @@ footer {
     position:               relative;
     text-decoration:        none;
     transition:             color 0.3s ease;
-}
-
-.nav-actual {
-    color:                  var(--green);
-    font-size:              1.1rem;
-    font-weight:            bold;
-    position:               relative;
 }
 
 .menu-principal a:hover {
@@ -128,7 +130,7 @@ footer {
     transition:             all 0.3s ease;
 }
 
-.btn-registro, .btn-acceso {
+.btn-registro, .btn-acceso, .btn-perfil {
     background:             var(--yellow);
     color:                  #000000;
     min-width:              100px;
@@ -139,17 +141,17 @@ footer {
     transform:              translateY(-2px);
 }
 
-
-
-
-
-/* ============ PAGINA DE INICIO ============ */
-
 main {
     display:                grid;
     grid-template-columns:  40% 60%;
     min-height:             calc(100vh - 160px);
 }
+
+
+
+
+
+/* ============ PAGINA DE INICIO ============ */
 
 .contenido-izquierdo {
     background:             #0d0d0d;
@@ -187,7 +189,8 @@ main {
 }
 
 .contenido-derecho {
-    position:               relative;
+    position:               sticky;
+    top: 69;
     width:                  100%;
     height:                 100%;
     overflow:               hidden;
@@ -315,7 +318,6 @@ main {
     transform: translateY(-2px);
 }
 
-/* Flecha de regreso en la esquina superior izquierda */
 .back-arrow {
     position: absolute;
     top: 20px;
@@ -329,6 +331,9 @@ main {
 .back-arrow:hover {
     color: var(--yellow);
 }
+
+
+
 
 
 /* ============ PERFIL DE USUARIO ============ */
@@ -373,7 +378,6 @@ main {
     color: var(--green);
 }
 
-/* Tabla de Transacciones */
 .tabla-transacciones {
     overflow-x: auto;
 }
@@ -413,6 +417,10 @@ main {
     font-weight: bold;
 }
 
+
+
+
+
 /* ============ PAGINA DE REGLAS ============ */
 
 .seccion-reglas {
@@ -423,7 +431,6 @@ main {
     margin-top: 20px;
 }
 
-/* Titulo */
 .seccion-reglas h1,
 .texto-bienvenida h1 {
     color: var(--yellow);
@@ -432,7 +439,6 @@ main {
     text-align: left;
 }
 
-/* Estilo acordeón */
 .seccion-reglas details {
     margin-bottom: 15px;
     border: 1px solid #333;
@@ -470,7 +476,6 @@ main {
     content: "-";
 }
 
-/* Contenido dentro del acordeón */
 .panel-content {
     padding: 20px;
     color: #ddd;
@@ -511,17 +516,20 @@ main {
     background: #222;
 }
 
+
+
+
+
 /* ====== Estilos para Sobre Nosotros ====== */
 
 .sobre-nosotros-izq {
-    background: #0d0d0d; /* fondo negro semi-transparente */
+    background: #0d0d0d;
     padding: 40px;
-    max-width: 800px; /* ancho limitado para que no se vea muy largo */
+    max-width: 800px;
 }
 
-/* ====== Estilos internos para el contenido de Sobre Nosotros ====== */
 .info-container {
-    background: #0d0d0d; /* fondo negro sólido dentro del contenedor */
+    background: #0d0d0d;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -540,7 +548,7 @@ main {
 }
 
 .info-seccion {
-    background: #121212; /* fondo ligeramente más oscuro para diferenciar secciones */
+    background: #121212;
     padding: 20px;
     border-radius: 8px;
 }
@@ -556,7 +564,7 @@ main {
 .info-seccion p,
 .info-seccion ul,
 .info-seccion ol {
-    list-style-type: disc; /* números */
+    list-style-type: disc;
     padding-left: 30px;
     font-size: 1.1rem;
     line-height: 1.7;
@@ -579,15 +587,18 @@ main {
 }
 
 
+
+
+
 /* ================== MESA DE RULETA FULLSCREEN ================== */
 
 .mesa-ruleta {
     position: absolute;
-    left: 10;        /* A la izquierda */
+    left: 10;
 }
 
 
-/* RESPONSIVE */
+/* RESPONSIVO */
 @media (max-width: 1024px) {
     main {
         grid-template-columns: 50% 50%;
