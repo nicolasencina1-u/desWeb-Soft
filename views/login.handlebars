@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>Inicio de sesión - Betanito</title>
+    
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <a href="/" class="back-arrow">&#8592; Inicio</a>
+    
+    <div class="contenedor-principal">
+        <section class="form-register">
+            <a href="/">
+                <img src="/images/icon.ico" alt="Icono Betanito 2.0" width=20%>
+            </a>
+
+            <h3>Inicio de sesión en Betanito</h3>
+
+            <form method="POST" action="/account/profile">
+              <input class="controls" type="text" name="username" id="RUT" placeholder="RUT (sin guión ni puntos)" pattern="[0-9kK]{7,9}" title="Solo números y la letra K (7 a 9 caracteres)">
+    
+              <input class="controls" type="password" name="password" id="Contraseñas" placeholder="Contraseña">
+    
+              <input class="botons-iniciar-sesion" type="submit" value="Iniciar sesión">
+            </form>
+
+            
+            <p>¿No tienes una cuenta? <a href="/register.html">Regístrate aquí</a></p>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Proyecto académico - 2025</p>
+    </footer>
+</body>
+</html>
