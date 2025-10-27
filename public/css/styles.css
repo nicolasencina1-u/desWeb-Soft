@@ -121,24 +121,30 @@ footer {
 }
 
 .btn {
-    display:                inline-block;
-    padding:                10px 20px;
-    font-weight:            bold;
-    text-decoration:        none;
-    border-radius:          8px;
-    text-align:             center;
-    transition:             all 0.3s ease;
+  display:                inline-block;
+  padding:                10px 20px;
+  font-weight:            bold;
+  text-decoration:        none;
+  border-radius:          8px;
+  text-align:             center;
+  transition:             all 0.3s ease;
 }
 
-.btn-registro, .btn-acceso, .btn-perfil {
-    background:             var(--yellow);
-    color:                  #000000;
-    min-width:              100px;
+.btn-acceso {
+  background: var(--yellow);
+  color:      #000000;
+  min-width:  100px;
 }
 
-.btn-registro:hover, .btn-acceso:hover, .btn-perfil:hover {
-    background:             var(--yellow-alt);
-    transform:              translateY(-2px);
+.btn-acceso:hover {
+  background:             var(--yellow-alt);
+  transform:              translateY(-2px);
+}
+
+.btn-actual {
+  background: var(--green);
+  color:      #000000;
+  min-width:  100px;
 }
 
 .btn-volver {
