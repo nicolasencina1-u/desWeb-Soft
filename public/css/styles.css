@@ -1,0 +1,656 @@
+:root {
+  --green: #0A8754;
+  --red: 0;
+  --yellow: #e6b800;
+  --yellow-alt: #ffcc00;
+}
+
+* {
+    box-sizing:     border-box;
+    font-family:    'Arial', sans-serif;
+    margin:         0;
+    padding:        0;
+}
+
+body {
+    background-color:       #0d0d0d;
+    background-image:       url('/images/fondo-ruleta.jpeg');
+    background-size:        cover;
+    background-position:    center;
+    background-repeat:      no-repeat;
+    background-attachment:  fixed;
+    color:                  #ffffff;
+    display:                flex;
+    flex-direction:         column;
+    line-height:            1.6;
+    min-height:             100vh;
+    min-height:             100svh;
+}
+
+.contenedor-principal {
+    background:             rgba(13, 13, 13, 0.85);
+    display:                flex;
+    flex:                   1;
+    flex-direction:         column;
+    height:                 100%;
+    justify-content:        center;
+}
+
+header {
+    align-items:            center;
+    background:             #1a1a1a;
+    display:                flex;
+    flex-wrap:              wrap;
+    justify-content:        space-between;
+    max-height:             120px;
+    padding:                15px 40px;
+    position:               sticky;
+    top:                    0;
+    z-index:                1000;
+}
+
+footer {
+    background:             #1a1a1a;
+    bottom:                 0;
+    left:                   0;
+    padding:                20px;
+    text-align:             center;
+    width:                  100%;
+}
+
+.logo-nav-container {
+    align-items:            center;
+    display:                flex;
+    gap:                    50px;
+}
+
+.logo img {
+    height:                 80px;
+    width:                  auto;
+}
+
+.menu-principal ul {
+    display:                flex;
+    gap:                    30px;
+    list-style:             none;
+    margin:                 0;
+    padding:                0;
+}
+
+.nav-actual {
+    color:                  var(--green);
+    font-size:              1.1rem;
+    font-weight:            bold;
+    position:               relative;
+    border-bottom:          2px solid var(--green);
+    text-underline-offset: 4px;
+}
+
+.menu-principal a {
+    color:                  #ffffff;
+    font-size:              1.1rem;
+    font-weight:            bold;
+    padding:                5px 0;
+    position:               relative;
+    text-decoration:        none;
+    transition:             color 0.3s ease;
+}
+
+.menu-principal a:hover {
+    color:                  var(--yellow);
+}
+
+.menu-principal a::after {
+    background:             var(--yellow);
+    bottom:                 0;
+    content:                '';
+    position:               absolute;
+    left:                   0;
+    width:                  0;
+    height:                 2px;
+    transition:             width 0.3s ease;
+}
+
+.menu-principal a:hover::after {
+    width:                  100%;
+}
+
+.accesos {
+    display:                flex;
+    gap:                    15px;
+}
+
+.btn {
+    display:                inline-block;
+    padding:                10px 20px;
+    font-weight:            bold;
+    text-decoration:        none;
+    border-radius:          8px;
+    text-align:             center;
+    transition:             all 0.3s ease;
+}
+
+.btn-registro, .btn-acceso, .btn-perfil {
+    background:             var(--yellow);
+    color:                  #000000;
+    min-width:              100px;
+}
+
+.btn-registro:hover, .btn-acceso:hover, .btn-perfil:hover {
+    background:             var(--yellow-alt);
+    transform:              translateY(-2px);
+}
+
+main {
+    display:                grid;
+    grid-template-columns:  40% 60%;
+    min-height:             calc(100vh - 160px);
+}
+
+
+
+
+
+/* ============ PAGINA DE INICIO ============ */
+
+.contenido-izquierdo {
+    background:             #0d0d0d;
+    padding:                40px;
+    display:                flex;
+    flex-direction:         column;
+    justify-content:        center;
+}
+
+.texto-bienvenida h1 {
+    color:                  var(--yellow);
+    font-size:              2.5rem;
+    margin-bottom:          20px;
+}
+
+.texto-bienvenida p {
+    margin-bottom:          20px;
+    font-size:              1.1rem;
+    line-height:            1.7;
+    text-align:             justify;
+}
+
+.btn-jugar {
+    background:             var(--yellow);
+    color:                  #000000;
+    padding:                12px 30px;
+    font-size:              1.2rem;
+    margin-top:             20px;
+    align-self:             flex-start;
+}
+
+.btn-jugar:hover {
+    background:             var(--yellow-alt);
+    transform:              translateY(-2px);
+}
+
+.contenido-derecho {
+    position:               sticky;
+    top: 69;
+    width:                  100%;
+    height:                 100%;
+    overflow:               hidden;
+}
+
+.contenido-derecho img {
+    position:               absolute;
+    top:                    50%;
+    left:                   50%;
+    width:                  100%;
+    height:                 100%;
+    object-fit:             cover;
+    transform:              translate(-50%, -50%);
+}
+
+.saldo {
+    color:                  var(--green);
+}
+
+
+
+
+
+/* ============ LOGIN / REGISTER ============ */
+
+.form-register {
+    width:                  100%;
+    max-width:              450px;
+    background:             #1a1a1a;
+    padding:                40px;
+    margin:                 40px auto;
+    border-radius:          10px;
+    border-width:           1px;
+    border-style:           solid;
+    border-color:           #333333;
+    color:                  #ffffff;
+    text-align:             center;
+}
+
+.form-register h3 {
+    font-family:            'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:              28px;
+    margin-bottom:          30px;
+    text-align:             center;
+    color:                  var(--yellow);
+}
+
+.form-register p {
+    margin:                 20px 0 10px 0;
+    font-size:              15px;
+}
+
+.form-register a {
+    color:                  var(--yellow);
+    text-decoration:        none;
+    font-weight:            bold;
+    transition:             color 0.3s ease;
+}
+
+.form-register a:hover {
+    color:                  var(--yellow-alt);
+    text-decoration:        underline;
+}
+
+.controls {
+    width:                  100%;
+    background:             #0d0d0d;
+    padding:                14px;
+    border-radius:          8px;
+    border-width:           1px;
+    border-style:           solid; 
+    border-color:           #333333;
+    margin-bottom:          20px;
+    font-size:              16px;
+    color:                  #ffffff;
+}
+
+.controls::placeholder {
+    color:                  #ffffff;
+    opacity:                0.8;
+}
+
+.controls:focus {
+    outline:                none;
+    border-color:           var(--yellow);
+    box-shadow:             0 0 3px rgba(230, 184, 0, 0.3);
+}
+
+.botons {
+    width:                  100%;
+    background:             var(--yellow);
+    border:                 none;
+    padding:                15px;
+    color:                  #000000;
+    margin:                 25px 0 15px 0;
+    font-size:              18px;
+    font-weight:            bold;
+    border-radius:          8px;
+    cursor:                 pointer;
+    transition:             all 0.3s ease;
+}
+
+.botons:hover {
+    background:             var(--yellow-alt);
+    transform:              translateY(-2px);
+}
+
+.botons-iniciar-sesion {
+    width: 100%;
+    background: var(--yellow);
+    border: none;
+    padding: 15px;
+    color: #000000;
+    margin: 25px 0 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.botons-iniciar-sesion:hover {
+    background: var(--yellow-alt);
+    transform: translateY(-2px);
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.back-arrow:hover {
+    color: var(--yellow);
+}
+
+
+
+
+
+/* ============ PERFIL DE USUARIO ============ */
+
+.seccion-perfil {
+    background: #1a1a1a;
+    padding: 25px 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.seccion-perfil:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+}
+
+.seccion-perfil h2 {
+    font-size: 1.5rem;
+    color: var(--yellow);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--yellow);
+    padding-bottom: 8px;
+}
+
+.info-usuario p {
+    margin: 8px 0;
+    font-size: 1.05rem;
+    color: #f2f2f2;
+}
+
+.saldo-actual {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.monto-saldo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.tabla-transacciones {
+    overflow-x: auto;
+}
+
+.tabla-transacciones table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.tabla-transacciones th, 
+.tabla-transacciones td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #333;
+    font-size: 1rem;
+}
+
+.tabla-transacciones th {
+    background: var(--yellow);
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tabla-transacciones tr:hover {
+    background: rgba(255,255,255,0.05);
+    transition: background 0.2s ease;
+}
+
+.monto-positivo {
+    color: var(--green);
+    font-weight: bold;
+}
+
+.monto-negativo {
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+
+
+
+
+/* ============ PAGINA DE REGLAS ============ */
+
+.seccion-reglas {
+    background: rgba(13, 13, 13, 0.85);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    margin-top: 20px;
+}
+
+.seccion-reglas h1,
+.texto-bienvenida h1 {
+    color: var(--yellow);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: left;
+}
+
+.seccion-reglas details {
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a;
+    transition: all 0.3s ease;
+}
+
+.seccion-reglas summary {
+    cursor: pointer;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--yellow);
+    background: #111;
+    list-style: none;
+    position: relative;
+}
+
+.seccion-reglas summary::marker {
+    display: none;
+}
+
+.seccion-reglas summary::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.seccion-reglas details[open] summary::after {
+    content: "-";
+}
+
+.panel-content {
+    padding: 20px;
+    color: #ddd;
+    line-height: 1.6;
+    background: #1a1a1a;
+}
+
+.panel-content h3 {
+    color: var(--green);
+    margin: 15px 0 10px;
+}
+
+.panel-content ul,
+.panel-content ol {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.panel-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.panel-content table th,
+.panel-content table td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: center;
+}
+
+.panel-content table th {
+    background: var(--yellow);
+    color: #000;
+}
+
+.panel-content table tr:nth-child(even) {
+    background: #222;
+}
+
+
+
+
+
+/* ====== Estilos para Sobre Nosotros ====== */
+
+.sobre-nosotros-izq {
+    background: #0d0d0d;
+    padding: 40px;
+    max-width: 800px;
+}
+
+.info-container {
+    background: #0d0d0d;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-titulo {
+    color: var(--yellow);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: left;
+    border-bottom: 2px solid var(--yellow-alt);
+    padding-bottom: 10px;
+}
+
+.info-seccion {
+    background: #121212;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.info-seccion h2 {
+    color: var(--yellow-alt);
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--yellow);
+    padding-bottom: 5px;
+}
+
+.info-seccion p,
+.info-seccion ul,
+.info-seccion ol {
+    list-style-type: disc;
+    padding-left: 30px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.info-seccion ul li,
+.info-seccion ol li {
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+.info-seccion ul li::marker {
+    color: var(--yellow);
+}
+
+.info-seccion ol li::marker {
+    color: var(--yellow-alt);
+}
+
+
+
+
+
+/* ================== MESA DE RULETA FULLSCREEN ================== */
+
+.mesa-ruleta {
+    position: absolute;
+    left: 10;
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+    
+    .logo-nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .menu-principal ul {
+        gap: 15px;
+    }
+    
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 400px;
+    }
+    
+    .contenido-izquierdo {
+        order: 2;
+        padding: 30px 20px;
+    }
+    
+    .contenido-derecho {
+        order: 1;
+    }
+    
+    .btn-jugar {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-principal ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .accesos {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-registro, .btn-acceso {
+        width: 100%;
+    }
+}
