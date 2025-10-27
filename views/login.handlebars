@@ -1,11 +1,11 @@
 <section class="form-register">
   <a href="/">
-    <img src="/images/icon.ico" alt="Icono Betanito 2.0" width=20%>
+    <img src="/images/betanito/icon.ico" alt="Icono Betanito 2.0" width=20%>
   </a>
 
   <h3>Inicio de sesión en Betanito</h3>
 
-  <form action="./login" method="post">
+  <form action="{{url 'login'}}" method="post">
     <input class="controls" type="text" name="rut" id="RUT" placeholder="RUT (sin guión ni puntos)" pattern="[0-9kK]{7,9}" title="Solo números y la letra K (7 a 9 caracteres)">
 
     <input class="controls" type="password" name="password" id="Contraseñas" placeholder="Contraseña">
@@ -14,5 +14,5 @@
   </form>
 
 
-  <p>¿No tienes una cuenta? <a href="./register">Regístrate aquí</a></p>
+  <p>¿No tienes una cuenta? <a href="{{url 'register'}}">Regístrate aquí</a></p>
 </section>
