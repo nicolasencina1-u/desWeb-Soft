@@ -190,7 +190,7 @@ app.get('/register', (req, res) => {
   res.redirect(appRoutes.register)
 })
 
-app.get(appRoutes.register, redirectIfAuth (req, res) => {
+app.get(appRoutes.register, redirectIfAuth, (req, res) => {
   res.render('register', {
     layout: 'clean',
     pageTitle: 'Registro'
@@ -239,7 +239,7 @@ app.get('/login', (req, res) => {
   res.redirect(appRoutes.login)
 })
 
-app.get(appRoutes.login, redirectIfAuth (req, res) => {
+app.get(appRoutes.login, redirectIfAuth, (req, res) => {
   res.render('login', {
     layout: 'clean',
     pageTitle: 'Inicio de sesión'
@@ -277,7 +277,7 @@ app.post(appRoutes.login, async (req, res) => {
           // ========
           //  LOGOUT
           // ========
-app.get(appRoutes.logout, requireAuth (req, res) => {
+app.get(appRoutes.logout, requireAuth, (req, res) => {
   res.clearCookie('usuario_id')
   res.clearCookie('username')
   res.redirect(appRoutes.login)
@@ -286,9 +286,6 @@ app.get(appRoutes.logout, requireAuth (req, res) => {
 // ==============================
 //              INFO
 // ==============================
-app.get('/register', (req, res) => {
-  res.redirect(appRoutes.aboutUs)
-})
 
           // ==========
           //  ABOUT US
