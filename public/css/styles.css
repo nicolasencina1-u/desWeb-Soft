@@ -141,6 +141,18 @@ footer {
     transform:              translateY(-2px);
 }
 
+.btn-volver {
+  background: var(--green);
+  color: #000000;
+  min-width: 100px;
+}
+
+.btn-volver:hover {
+  background:             #000000;
+  color: var(--green);
+  transform:              translateY(-2px);
+}
+
 main {
     display:                grid;
     grid-template-columns:  40% 60%;
