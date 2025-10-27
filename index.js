@@ -59,10 +59,9 @@ app.set('views', './views')
 // Leer datos de formularios
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// Middleware que habilita el manejo de cookies
+// Middlewares
 app.use(cookieParser())
 
-// Autenticación
 app.use((req, res, next) => {
   if (req.cookies.usuario_id) {
     res.locals.isAuthenticated = true
@@ -75,6 +74,13 @@ app.use((req, res, next) => {
 const requireAuth = (req, res, next) => {
   if (!req.cookies.usuario_id) {
     return res.redirect(appRoutes.login)
+  }
+  next()
+}
+
+const redirectIfAuth = (req, res, next) => {
+  if (req.cookies.usuario_id) {
+    return res.redirect(appRoutes.profile);
   }
   next()
 }
@@ -136,12 +142,8 @@ app.get('/account', (req, res) => {
           // =========
           //  PROFILE
           // =========
-app.get(appRoutes.profile, async (req, res) => {
+app.get(appRoutes.profile, requireAuth, async (req, res) => {
   const usuario_id = req.cookies.usuario_id
-
-  if (!usuario_id) {
-    return res.redirect(appRoutes.login)
-  }
 
   try {
     const usuario = await Usuario.findById(usuario_id).lean()
@@ -166,10 +168,7 @@ app.get(appRoutes.profile, async (req, res) => {
           // ==============
           //  TRANSACTIONS
           // ==============
-app.get(appRoutes.transactions, (req, res) => {
-  const username = req.cookies.username
-  if (!username) return res.redirect(appRoutes.login)
-
+app.get(appRoutes.transactions, requireAuth, (req, res) => {
   res.render('transactions', {
     pageTitle: 'Transacciones'
   })
@@ -182,7 +181,7 @@ app.get('/register', (req, res) => {
   res.redirect(appRoutes.register)
 })
 
-app.get(appRoutes.register, (req, res) => {
+app.get(appRoutes.register, redirectIfAuth (req, res) => {
   res.render('register', {
     layout: 'clean',
     pageTitle: 'Registro'
@@ -231,7 +230,7 @@ app.get('/login', (req, res) => {
   res.redirect(appRoutes.login)
 })
 
-app.get(appRoutes.login, (req, res) => {
+app.get(appRoutes.login, redirectIfAuth (req, res) => {
   res.render('login', {
     layout: 'clean',
     pageTitle: 'Inicio de sesión'
@@ -269,7 +268,7 @@ app.post(appRoutes.login, async (req, res) => {
           // ========
           //  LOGOUT
           // ========
-app.get(appRoutes.logout, (req, res) => {
+app.get(appRoutes.logout, requireAuth (req, res) => {
   res.clearCookie('usuario_id')
   res.clearCookie('username')
   res.redirect(appRoute.login)
@@ -300,25 +299,12 @@ app.get(appRoutes.rouletteRules, (req, res) => {
 })
 
 // ==============================
-//              NOSE
+//           ROULETTE
 // ==============================
-
-          // ==========
-          //  ROULETTE
-          // ==========
 app.get(appRoutes.roulette, (req, res) => {
   res.render('roulette', {
     pageTitle: 'Ruleta'
   })
-})
-          // ============
-          //  BIENVENIDA
-          // ============
-app.get(appRoutes.bienvenida, (req, res) => {
-  const username = req.cookies.username
-  if (!username) return res.redirect(appRoutes.login)
-
-  res.send(`<h2>Bienvenido, ${username}!</h2>`)
 })
 
 app.listen(port, () => {
