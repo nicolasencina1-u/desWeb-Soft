@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const { engine } = require('express-handlebars')
 const Handlebars = require('handlebars')
@@ -96,7 +98,7 @@ const redirectIfAuth = (req, res, next) => {
 app.use(express.static('public'))
 
 // Base de datos
-mongoose.connect('mongodb+srv://admin:admin321@cluster0.ilgvl5k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
