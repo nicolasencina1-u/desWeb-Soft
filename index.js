@@ -62,6 +62,23 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Middleware que habilita el manejo de cookies
 app.use(cookieParser())
 
+// Autenticación
+app.use((req, res, next) => {
+  if (req.cookies.usuario_id) {
+    res.locals.isAuthenticated = true
+  } else {
+    res.locals.isAuthenticated = false
+  }
+  next()
+})
+
+const requireAuth = (req, res, next) => {
+  if (!req.cookies.usuario_id) {
+    return res.redirect(appRoutes.login)
+  }
+  next()
+}
+
 // Archivos estaticos
 app.use(express.static('public'))
 
