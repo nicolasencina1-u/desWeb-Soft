@@ -31,7 +31,7 @@ const appRoutes = {
       bienvenida: '/bienvenida'
 }
 
-// Configurar Handlebars con layout por defecto y helpers
+// Handlebars / Helpers
 app.engine('handlebars', engine({
   defaultLayout: 'main',
   helpers: {
