@@ -1,0 +1,94 @@
+<main>
+  <section class="contenido-izquierdo">
+    <div class="texto-bienvenida">
+       <h1>Perfil de Usuario</h1>
+
+       <div class="seccion-perfil">
+         <h2>Información Personal</h2>
+
+         <div class="info-usuario">
+           <p><strong>Usuario:</strong> {{usuario.user}}</p>
+           <p><strong>Nombre:</strong> {{usuario.name}} {{usuario.surname}}</p>
+
+           <p><strong>RUT:</strong> {{usuario.rut}}</p>
+
+           <p><strong>Email:</strong> {{usuario.mail}}</p>
+
+           <p><strong>Teléfono:</strong> +56 9 1234 5678</p>
+         </div>
+       </div>
+
+       <div class="seccion-perfil">
+         <h2>Saldo Actual</h2>
+
+         <div class="saldo-actual">
+           <p class="monto-saldo">$64.920 CLP</p>
+         </div>
+       </div>
+
+       <div class="seccion-perfil">
+         <h2>Últimas Transacciones</h2>
+
+         <div class="tabla-transacciones">
+           <table>
+             <thead>
+               <tr>
+                 <th>Fecha</th>
+
+                 <th>Tipo</th>
+
+                 <th>Monto</th>
+               </tr>
+             </thead>
+
+             <tbody>
+               <tr>
+                 <td>15/03/2025</td>
+
+                 <td>Depósito</td>
+
+                 <td class="monto-positivo">+$20.000</td>
+               </tr>
+
+               <tr>
+                 <td>14/03/2025</td>
+
+                 <td>Apuesta</td>
+
+                 <td class="monto-negativo">-$5.000</td>
+               </tr>
+
+               <tr>
+                 <td>13/03/2025</td>
+
+                 <td>Ganancia</td>
+
+                 <td class="monto-positivo">+$15.000</td>
+               </tr>
+
+               <tr>
+                 <td>12/03/2025</td>
+
+                 <td>Apuesta</td>
+
+                 <td class="monto-negativo">-$3.500</td>
+               </tr>
+
+               <tr>
+                 <td>11/03/2025</td>
+
+                 <td>Depósito</td>
+
+                 <td class="monto-positivo">+$30.000</td>
+               </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+  </section>
+
+  <section class="contenido-derecho">
+    <img src="/images/fondo-ruleta.jpeg" alt="Imagen de casino">
+  </section>
+</main>
