@@ -143,8 +143,12 @@ footer {
 
 .btn-volver {
   background: var(--green);
-  color: #000000;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
   min-width: 100px;
+  align-self: flex-start;
+  margin: 40px;
 }
 
 .btn-volver:hover {
