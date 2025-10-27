@@ -32,7 +32,11 @@
 
       <div class="accesos">
         {{#if isAuthenticated}}
-          <a href="{{url 'profile'}}" class="btn btn-perfil">Perfil</a>
+          {{#ifCond pageTitle "Perfil"}}
+            <a class="btn btn-actual">Perfil</a>
+          {{else}}
+            <a href="{{url 'profile'}}" class="btn btn-acceso">Perfil</a>
+          {{/ifCond}}
 
           <a href="{{url 'logout'}}" class="btn btn-acceso">Cerrar Sesión</a>
         {{else}}
