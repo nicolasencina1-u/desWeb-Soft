@@ -31,7 +31,7 @@ const appRoutes = {
       bienvenida: '/bienvenida'
 }
 
-// Configurar Handlebars con layout por defecto y helper
+// Configurar Handlebars con layout por defecto y helpers
 app.engine('handlebars', engine({
   defaultLayout: 'main',
   helpers: {
@@ -50,6 +50,13 @@ app.engine('handlebars', engine({
       }
 
       return new Handlebars.SafeString(html)
+    },
+
+    ifCond: function(a, b, options) {
+      if (a === b) {
+        return options.fn(this)
+      }
+      return options.inverse(this)
     }
   }
 }))
@@ -271,7 +278,7 @@ app.post(appRoutes.login, async (req, res) => {
 app.get(appRoutes.logout, requireAuth (req, res) => {
   res.clearCookie('usuario_id')
   res.clearCookie('username')
-  res.redirect(appRoute.login)
+  res.redirect(appRoutes.login)
 })
 
 // ==============================
