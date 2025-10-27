@@ -31,11 +31,15 @@
       </div>
 
       <div class="accesos">
-        <a href="{{url 'profile'}}" class="btn btn-perfil">Perfil</a>
+        {{#if isAuthenticated}}
+          <a href="{{url 'profile'}}" class="btn btn-perfil">Perfil</a>
 
-        <a href="{{url 'register'}}" class="btn btn-registro">Registro</a>
+          <a href="{{url 'logout'}}" class="btn btn-acceso">Cerrar Sesión</a>
+        {{else}}
+          <a href="{{url 'register'}}" class="btn btn-registro">Registro</a>
 
-        <a href="{{url 'login'}}" class="btn btn-acceso">Inicio Sesion</a>
+          <a href="{{url 'login'}}" class="btn btn-acceso">Inicio Sesion</a>
+        {{/if}}
       </div>
     </header>
 
