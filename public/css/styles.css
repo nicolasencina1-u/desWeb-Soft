@@ -14,7 +14,7 @@
 
 body {
     background-color:       #0d0d0d;
-    background-image:       url('/images/fondo-ruleta.jpeg');
+    background-image:       url('/images/bg/ruleta.png');
     background-size:        cover;
     background-position:    center;
     background-repeat:      no-repeat;
@@ -212,9 +212,9 @@ main {
 
 .contenido-derecho {
     position:               sticky;
-    top: 69;
+    top:                    69px;
     width:                  100%;
-    height:                 100%;
+    height:                 calc(100vh - 69px)
     overflow:               hidden;
 }
 

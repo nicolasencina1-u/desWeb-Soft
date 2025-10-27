@@ -266,7 +266,7 @@ app.post(appRoutes.login, async (req, res) => {
 
     res.cookie('username', usuario.user)
 
-    res.redirect(appRoutes.bienvenida)
+    res.redirect(appRoutes.profile)
 
   } catch (err) {
     console.error('Error al iniciar sesión:', err)
