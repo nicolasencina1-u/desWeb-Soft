@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{pageTitle}} - Betanito</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <link rel="icon" href="/images/icon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="contenedor-principal">
+    <header>
+      <div class="logo-nav-container">
+        <a class="logo" href="{{url 'home'}}">
+          <img src="/images/logo-casino.png" alt="Logo Betanito 2.0">
+        </a>
+
+        <nav class="menu-principal">
+          <ul>
+            {{navLink pageTitle "Inicio" "home"}}
+            {{navLink pageTitle "Ruleta" "roulette"}}
+            {{navLink pageTitle "Transacciones" "transactions"}}
+            {{navLink pageTitle "Sobre Nosotros" "aboutUs"}}
+            {{navLink pageTitle "Reglas de la Ruleta" "rouletteRules"}}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="accesos">
+        <a href="{{url 'profile'}}" class="btn btn-perfil">Perfil</a>
+
+        <a href="{{url 'register'}}" class="btn btn-registro">Registro</a>
+
+        <a href="{{url 'login'}}" class="btn btn-acceso">Inicio Sesion</a>
+      </div>
+    </header>
+
+    {{{body}}}
+  </div>
+
+  <footer>
+    <p>Proyecto académico - 2025</p>
+  </footer>
+</body>
+</html>
