@@ -1,8 +1,8 @@
 :root {
   --green: #0A8754;
-  --red: 0;
-  --yellow: #e6b800;
-  --yellow-alt: #ffcc00;
+  --red: #EF3054;
+  --yellow: #E6B800;
+  --yellow-alt: #FFCC00;
 }
 
 * {
@@ -148,7 +148,9 @@ footer {
 }
 
 .btn-volver {
-  background: var(--green);
+  position: sticky;
+  top: 40px;
+  background: var(--red);
   border: none;
   cursor: pointer;
   color: #FFFFFF;
@@ -158,8 +160,8 @@ footer {
 }
 
 .btn-volver:hover {
-  background:             #000000;
-  color: var(--green);
+  background:             #FFFFFF;
+  color: var(--red);
   transform:              translateY(-2px);
 }
 
