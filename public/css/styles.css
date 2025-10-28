@@ -214,7 +214,7 @@ main {
     position:               sticky;
     top:                    69px;
     width:                  100%;
-    height:                 calc(100vh - 69px)
+    height:                 calc(100vh - 69px);
     overflow:               hidden;
 }
 
