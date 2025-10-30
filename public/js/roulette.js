@@ -198,12 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // 3. CÁLCULO DE LA RULETA (IMAGEN)
       // 5 rotaciones (sentido horario) + la posición final ANTI-HORARIA (-targetAngle)
-      const wheelRotation = (360 * 8) + targetAngle;
+      const wheelRotation = (360 * 9) + targetAngle;
 
       // 4. CÁLCULO DE LA BOLA
       // 8 rotaciones (sentido anti-horario) + la misma posición final ANTI-HORARIA (-targetAngle)
       // La bola gira en dirección opuesta, pero ambas deben aterrizar en el mismo ángulo.
-      const ballRotation = (360 * 8) + (slotAngle / 2);
+      const ballRotation = (360 * -6);
 
       // 5. ANIMACIÓN
       
