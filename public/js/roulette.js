@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 4. CÁLCULO DE LA BOLA
       // 8 rotaciones (sentido anti-horario) + la misma posición final ANTI-HORARIA (-targetAngle)
       // La bola gira en dirección opuesta, pero ambas deben aterrizar en el mismo ángulo.
-      const ballRotation = (360 * -6);
+      const ballRotation = (360 * -15) + wheelRotation - targetAngle;
 
       // 5. ANIMACIÓN
       
