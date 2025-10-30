@@ -1,4 +1,3 @@
-<main>
   <div class="roulette-container">
     <section class="game-info-panel">
       <div class="info-box state-box">
@@ -35,10 +34,10 @@
             {{#each ultimasApuestas}}
               <li>
                 <span>{{this.betType}} ({{formatCurrency this.amount}})</span>
-                
-                <span class="result-{{#if (ifCond this.type 'win')}}win{{else}}lose{{/if}}">
-                  {{#if (ifCond this.type 'win')}}Ganó{{else}}Perdió{{/if}}
-                </span>
+
+		<span class="result-{{#ifCond this.type 'win'}}win{{else}}lose{{/ifCond}}">
+		  {{#ifCond this.type 'win'}}Ganó{{else}}Perdió{{/ifCond}}
+		</span>                
               </li>
             {{/each}}
           {{else}}
@@ -163,13 +162,8 @@
   </div>
   
   <script>
-    Handlebars.registerHelper('stringToArray', function(str) {
-      return str.split(',')
-    })
-  
     // Mandar datos del servidor a JS
     const initialGameData = {{{gameData}}}
   </script>
   
   <script src="/js/roulette.js" defer></script>
-</main>

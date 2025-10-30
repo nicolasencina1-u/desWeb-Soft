@@ -58,13 +58,17 @@ app.engine('handlebars', engine({
       }
       return options.inverse(this)
     },
-      
+
     formatCurrency: (number) => {
       return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP' }).format(number)
     },
-    
+
     formatDate: (date) => {
       return new Date(date).toLocaleString('es-CL')
+    },
+
+    stringToArray: function(str) {
+      return str.split(',');
     }
   }
 }))
@@ -156,7 +160,7 @@ const TransaccionSchema = new mongoose.Schema({
 })
 
 const Transaccion = mongoose.model('Transaccion', TransaccionSchema)
-    
+
 // PARTIDAS GUARDADAS
 const PartidaRuletaSchema = new mongoose.Schema({
     winningNumber: { type: Number, required: true },
@@ -187,7 +191,7 @@ app.get('/account', (req, res) => {
           // =========
 app.get(appRoutes.profile, requireAuth, async (req, res) => {
   try {
-    const usuario = await Usuario.findById(usuario_id).lean()
+    const usuario = await Usuario.findById(res.locals.userId).lean()
 
     if (!usuario) {
       return res.redirect(appRoutes.logout)
@@ -198,7 +202,7 @@ app.get(appRoutes.profile, requireAuth, async (req, res) => {
     res.render('profile', {
       pageTitle: 'Perfil',
       usuario: usuario,
-      transacciones = transacciones
+      transacciones: transacciones
     })
 
   } catch (err) {
@@ -210,7 +214,7 @@ app.get(appRoutes.profile, requireAuth, async (req, res) => {
           // ==============
           //  TRANSACTIONS
           // ==============
-app.get(appRoutes.transactions, requireAuth, (req, res) => {
+app.get(appRoutes.transactions, requireAuth, async (req, res) => {
   try {
       const usuario = await Usuario.findById(res.locals.userId).lean()
       if (!usuario) {
@@ -218,7 +222,7 @@ app.get(appRoutes.transactions, requireAuth, (req, res) => {
       }
 
       const transacciones = await Transaccion.find({ userId: res.locals.userId }).sort({ timestamp: -1 }).limit(10).lean()
-      
+
       res.render('transactions', {
         pageTitle: 'Transacciones',
         usuario: usuario,
@@ -279,7 +283,7 @@ app.post(appRoutes.register, async (req, res) => {
         betType: 'Bono de Bienvenida'
     });
     await transaccionInicial.save()
-    
+
     res.redirect(appRoutes.login)
 
   } catch (err) {
@@ -419,7 +423,7 @@ function checkWin(betType, numberData) {
     // Apuestas más complejas (split, calle, etc.) requerirían una lógica
     // de mapeo más avanzada, que no está implementada aquí por simplicidad.
     // Por ahora, solo manejamos apuestas simples.
-    
+
     return false
 }
 
@@ -487,7 +491,7 @@ app.post('/roulette/spin', requireAuth, async (req, res) => {
 
         const winningNumber = Math.floor(Math.random() * 37)
         const numberData = getNumberData(winningNumber)
-        
+
         // GUARDAR PARTIDA
         const nuevaPartida = new PartidaRuleta({
             winningNumber: winningNumber,
