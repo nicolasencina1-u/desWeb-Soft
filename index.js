@@ -21,7 +21,6 @@ const appRoutes = {
       transactions: '/account/transactions',
       register: '/account/register',
       login: '/account/login',
-      register: '/account/register',
       logout: '/account/logout',
 
     // INFO
