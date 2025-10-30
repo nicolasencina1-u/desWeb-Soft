@@ -18,10 +18,12 @@ const appRoutes = {
 
     // ACCOUNT
       profile: '/account/profile',
-      transactions: '/account/transactions',
       register: '/account/register',
       login: '/account/login',
       logout: '/account/logout',
+      transactions: '/account/transactions',
+      deposit: '/account/transactions/deposit',
+      withdraw: '/account/transactions/withdraw',
 
     // INFO
       rouletteRules: '/info/roulette-rules',
@@ -211,29 +213,6 @@ app.get(appRoutes.profile, requireAuth, async (req, res) => {
   }
 })
 
-          // ==============
-          //  TRANSACTIONS
-          // ==============
-app.get(appRoutes.transactions, requireAuth, async (req, res) => {
-  try {
-      const usuario = await Usuario.findById(res.locals.userId).lean()
-      if (!usuario) {
-          return res.redirect(appRoutes.logout)
-      }
-
-      const transacciones = await Transaccion.find({ userId: res.locals.userId }).sort({ timestamp: -1 }).limit(10).lean()
-
-      res.render('transactions', {
-        pageTitle: 'Transacciones',
-        usuario: usuario,
-        transacciones: transacciones
-      })
-  } catch (err) {
-      console.error('Error al cargar transacciones:', err)
-      res.send('Error al cargar la página de transacciones.')
-  }
-})
-
           // ==========
           //  REGISTER
           // ==========
@@ -341,6 +320,101 @@ app.get(appRoutes.logout, requireAuth, (req, res) => {
   res.clearCookie('usuario_id')
   res.clearCookie('username')
   res.redirect(appRoutes.login)
+})
+
+          // ==============
+          //  TRANSACTIONS
+          // ==============
+app.get(appRoutes.transactions, requireAuth, async (req, res) => {
+  try {
+      const usuario = await Usuario.findById(res.locals.userId).lean()
+      if (!usuario) {
+          return res.redirect(appRoutes.logout)
+      }
+
+      const transacciones = await Transaccion.find({ userId: res.locals.userId }).sort({ timestamp: -1 }).limit(10).lean()
+
+      res.render('transactions', {
+        pageTitle: 'Transacciones',
+        usuario: usuario,
+        transacciones: transacciones
+      })
+  } catch (err) {
+      console.error('Error al cargar transacciones:', err)
+      res.send('Error al cargar la página de transacciones.')
+  }
+})
+
+          // =========
+          //  DEPOSIT
+          // =========
+app.post(appRoutes.deposit, requireAuth, async (req, res) => {
+    try {
+        const amount = parseInt(req.body['monto-deposito'], 10)
+        if (!amount || amount <= 0) {
+            return res.send('Monto inválido.')
+        }
+
+        const usuario = await Usuario.findById(res.locals.userId)
+        if (!usuario) {
+            return res.redirect(appRoutes.login);
+        }
+
+        usuario.balance += amount;
+        await usuario.save();
+
+        const nuevaTransaccion = new Transaccion({
+            userId: res.locals.userId,
+            type: 'deposit',
+            amount: amount,
+            betType: 'Depósito Manual'
+        })
+        await nuevaTransaccion.save()
+
+        res.redirect(appRoutes.transactions)
+
+    } catch (err) {
+        console.error('Error al depositar:', err)
+        res.send('Error interno del servidor')
+    }
+})
+
+          // ==========
+          //  WITHDRAW
+          // ==========
+app.post(appRoutes.withdraw, requireAuth, async (req, res) => {
+    try {
+        const amount = parseInt(req.body['monto-retiro'], 10);
+        if (!amount || amount <= 0) {
+            return res.send('Monto inválido.')
+        }
+
+        const usuario = await Usuario.findById(res.locals.userId);
+        if (!usuario) {
+            return res.redirect(appRoutes.login)
+        }
+
+        if (usuario.balance < amount) {
+            return res.send('Saldo insuficiente. <a href="/account/transactions">Volver</a>')
+        }
+
+        usuario.balance -= amount
+        await usuario.save()
+
+        const nuevaTransaccion = new Transaccion({
+            userId: res.locals.userId,
+            type: 'withdrawal',
+            amount: -amount,
+            betType: 'Retiro Manual'
+        })
+        await nuevaTransaccion.save()
+
+        res.redirect(appRoutes.transactions)
+
+    } catch (err) {
+        console.error('Error al retirar:', err)
+        res.send('Error interno del servidor')
+    }
 })
 
 // ==============================
