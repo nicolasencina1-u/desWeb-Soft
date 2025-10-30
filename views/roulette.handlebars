@@ -1,43 +1,175 @@
 <main>
-  <section class="contenido-izquierdo">
-    <div class="texto-bienvenida">
-      <h1>Mesa de Ruleta Europea</h1>
-
-      <h2>Estado: <span id="estado">Recibiendo apuestas</span></h2>
-
-      <h2>Saldo disponible: <span id="saldo">$64.920</span></h2>
-
-      <h3>Últimos 5 números ganadores</h3>
-
-      <ul id="ultimos-numeros">
-        <li>23 (Rojo)</li>
-
-        <li>0 (Verde)</li>
-
-        <li>12 (Rojo)</li>
-
-        <li>8 (Negro)</li>
-
-        <li>31 (Negro)</li>
-      </ul>
-
-      <h3>Últimas 5 apuestas</h3>
-
-      <ul id="ultimas-apuestas">
-        <li>Pleno al 7 - $50 - Ganó +$1750</li>
-
-        <li>Rojo - $100 - Perdió -$100</li>
-
-        <li>Par - $200 - Ganó +$200</li>
-
-        <li>Negro - $150 - Perdió -$150</li>
-
-        <li>Pleno al 0 - $20 - Perdió -$20</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="contenido-derecho">
-    <img src="/images/juego-ruleta.png" alt="Mesa de Ruleta Europea">
-  </section>
+  <div class="roulette-container">
+    <section class="game-info-panel">
+      <div class="info-box state-box">
+        <h1>Mesa de Ruleta Europea</h1>
+        
+        <h2>Estado: <span id="game-state">Recibiendo apuestas</span></h2>
+      </div>
+  
+      <div class="info-box balance-box">
+        <h2>Saldo disponible</h2>
+        
+        <span id="user-balance">{{formatCurrency usuario.balance}}</span>
+      </div>
+  
+      <div class="info-box history-box">
+        <h3>Últimos 5 números</h3>
+        
+        <ul id="last-numbers-list">
+          {{#if ultimosNumeros}}
+            {{#each ultimosNumeros}}
+              <li class="number-{{this.color}}">{{this.winningNumber}}</li>
+            {{/each}}
+          {{else}}
+            <li>-</li><li>-</li><li>-</li><li>-</li><li>-</li>
+          {{/if}}
+        </ul>
+      </div>
+  
+      <div class="info-box bets-box">
+        <h3>Últimas 5 apuestas</h3>
+        
+        <ul id="last-bets-list">
+          {{#if ultimasApuestas}}
+            {{#each ultimasApuestas}}
+              <li>
+                <span>{{this.betType}} ({{formatCurrency this.amount}})</span>
+                
+                <span class="result-{{#if (ifCond this.type 'win')}}win{{else}}lose{{/if}}">
+                  {{#if (ifCond this.type 'win')}}Ganó{{else}}Perdió{{/if}}
+                </span>
+              </li>
+            {{/each}}
+          {{else}}
+            <li>Sin apuestas recientes.</li>
+          {{/if}}
+        </ul>
+      </div>
+    </section>
+  
+    <section class="game-area">
+      <div class="wheel-container">
+        <div id="roulette-wheel">
+          <div class="wheel-outer-border">
+            <div class="wheel-inner-border">
+              <div class="wheel-numbers">
+                {{#each (stringToArray "0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26")}}
+                  <div class="number-slot" data-number="{{this}}">
+                    <span class="number-text">{{this}}</span>
+                  </div>
+                {{/each}}
+              </div>
+              
+              <div class="wheel-center-hub"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="ball"></div>
+        
+        <div id="result-display">
+          <span>¡Hagan sus apuestas!</span>
+        </div>
+      </div>
+  
+      <div class="controls-container">
+        <div class="chip-selection">
+          <div class="chip" data-value="100">$100</div>
+          
+          <div class="chip" data-value="500">$500</div>
+          
+          <div class="chip active" data-value="1000">$1K</div>
+          
+          <div class="chip" data-value="5000">$5K</div>
+          
+          <div class="chip" data-value="10000">$10K</div>
+        </div>
+        
+        <div class="action-buttons">
+          <button id="btn-spin" class="btn btn-jugar">Girar</button>
+          
+          <button id="btn-clear" class="btn btn-volver">Limpiar</button>
+        </div>
+      </div>
+  
+      <div class="betting-layout-container">
+        <div class="betting-total">
+          Apuesta Total: <span id="total-bet-amount">$0</span>
+        </div>
+          
+        <div class="betting-layout">
+          <div class="bet-option number-0" data-bet-type="Pleno 0">0</div>
+          
+          <div class="main-grid">
+            <div class="bet-option number-red" data-bet-type="Pleno 3">3</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 6">6</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 9">9</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 12">12</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 15">15</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 18">18</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 21">21</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 24">24</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 27">27</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 30">30</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 33">33</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 36">36</div>
+            <div class="bet-option bet-2to1" data-bet-type="Columna 3">2:1</div>
+  
+            <div class="bet-option number-black" data-bet-type="Pleno 2">2</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 5">5</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 8">8</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 11">11</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 14">14</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 17">17</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 20">20</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 23">23</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 26">26</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 29">29</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 32">32</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 35">35</div>
+            <div class="bet-option bet-2to1" data-bet-type="Columna 2">2:1</div>
+  
+            <div class="bet-option number-red" data-bet-type="Pleno 1">1</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 4">4</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 7">7</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 10">10</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 13">13</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 16">16</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 19">19</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 22">22</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 25">25</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 28">28</div>
+            <div class="bet-option number-black" data-bet-type="Pleno 31">31</div>
+            <div class="bet-option number-red" data-bet-type="Pleno 34">34</div>
+            <div class="bet-option bet-2to1" data-bet-type="Columna 1">2:1</div>
+          </div>
+  
+          <div class="outside-bets">
+            <div class="bet-option bet-dozen" data-bet-type="Docena 1">1ra 12</div>
+            <div class="bet-option bet-dozen" data-bet-type="Docena 2">2da 12</div>
+            <div class="bet-option bet-dozen" data-bet-type="Docena 3">3ra 12</div>
+            
+            <div class="bet-option bet-even-money" data-bet-type="Falta (1-18)">1-18</div>
+            <div class="bet-option bet-even-money" data-bet-type="Par">Par</div>
+            <div class="bet-option bet-even-money bet-red" data-bet-type="Rojo"></div>
+            <div class="bet-option bet-even-money bet-black" data-bet-type="Negro"></div>
+            <div class="bet-option bet-even-money" data-bet-type="Impar">Impar</div>
+            <div class="bet-option bet-even-money" data-bet-type="Pasa (19-36)">19-36</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <script>
+    Handlebars.registerHelper('stringToArray', function(str) {
+      return str.split(',')
+    })
+  
+    // Pasamos los datos del servidor a JavaScript
+    const initialGameData = {{{gameData}}}
+  </script>
+  
+  <script src="/js/roulette.js" defer></script>
 </main>
