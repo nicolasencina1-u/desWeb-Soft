@@ -621,8 +621,32 @@ main {
 
 /* ================== MESA DE RULETA ================== */
 
-/* --- Layout Principal de la Página de Ruleta --- */
-/* Diseñado para 1920x1080 */
+.btn-girar {
+    background:             var(--green);
+    color:                  #000000;
+    padding:                12px 30px;
+    font-size:              1.2rem;
+    align-self:             flex-start;
+}
+
+.btn-girar:hover {
+    background:             var(--betting-green);
+    transform:              translateY(-2px);
+}
+
+.btn-limpiar {
+    background:             var(--red);
+    color:                  #000000;
+    padding:                12px 30px;
+    font-size:              1.2rem;
+    align-self:             flex-start;
+}
+
+.btn-limpiar:hover {
+    background:             var(--roulette-red);
+    transform:              translateY(-2px);
+}
+
 .roulette-container {
     display: grid;
     grid-template-columns: 320px 1fr; /* Columna fija para info, resto para juego */
