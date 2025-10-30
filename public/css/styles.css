@@ -919,6 +919,7 @@ main {
 }
 
 .outside-bets {
+    width: calc(12/13 * 100%);
     grid-column: 2 / 3;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
