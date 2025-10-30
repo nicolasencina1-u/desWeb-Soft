@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // 1. Busca el índice del número ganador en nuestro array ANTI-HORARIO
       const index = wheelNumbersOrder.indexOf(winningNumber);
       const slotAngle = 360 / wheelNumbersOrder.length;
-      
+
       // 2. Calcula el ángulo de detención (centrado en el slot)
       const targetAngle = (index * slotAngle);
       const randomAngle = Math.random() * 360;
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const ballRotation = (360 * -15) + wheelRotation - targetAngle;
 
       // 5. ANIMACIÓN
-      
+
       // Animación de la ruleta (imagen)
       wheel.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)'; // Ease-out
       wheel.style.transform = `rotate(${wheelRotation}deg)`;
@@ -216,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
       ball.style.transition = 'all 4s cubic-bezier(0.1, 0.5, 0.3, 1)'; // Diferente ease
       ball.style.transform = `rotate(${ballRotation}deg)`;
 
-
       setTimeout(() => {
         // 6. RESETEO
         // Resetear transiciones para el próximo giro
@@ -224,11 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
         ball.style.transition = 'none';
 
         // "Fijar" la rotación final (un valor entre -360 y 0)
-        const finalRotation = wheelRotation % 360;
+        const finalRotationWheel = wheelRotation % 360;
+        const finalRotationBall = ballRotation % 360;
 
         // Ambas deben fijarse en la misma rotación final
-        wheel.style.transform = `rotate(${finalRotation}deg)`;
-        ball.style.transform = `rotate(${finalRotation}deg)`;
+        wheel.style.transform = `rotate(${finalRotationWheel}deg)`;
+        ball.style.transform = `rotate(${finalRotationBall}deg)`;
 
         resolve();
       }, 4100); // 4.1 segundos
