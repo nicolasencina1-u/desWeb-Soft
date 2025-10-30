@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // --- REFERENCIAS AL DOM ---
   const wheel = document.getElementById('roulette-wheel')
-  const ball = document.getElementById('ball')
   const gameStateDisplay = document.getElementById('game-state')
   const userBalanceDisplay = document.getElementById('user-balance')
   const totalBetDisplay = document.getElementById('total-bet-amount')
@@ -189,38 +188,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function spinWheel(winningNumber) {
     return new Promise(resolve => {
-      const index = wheelNumbersOrder.indexOf(winningNumber)
-      const slotAngle = 360 / wheelNumbersOrder.length
+      // Busca el índice del número ganador en nuestro nuevo array horario
+      const index = wheelNumbersOrder.indexOf(winningNumber);
+      const slotAngle = 360 / wheelNumbersOrder.length;
       
-      // Calcular ángulo de detención
-      // + (Math.random() - 0.5) * slotAngle * 0.8; // Pequeña aleatoriedad dentro del slot
-      const targetAngle = (index * slotAngle) + (slotAngle / 2)
+      // Calcula el ángulo de detención (centrado en el slot)
+      const targetAngle = (index * slotAngle) + (slotAngle / 2);
       
-      // Múltiples rotaciones (ej. 5 vueltas completas) + ángulo objetivo
-      // Se resta el targetAngle porque la ruleta gira en sentido anti-horario (CSS)
-      const totalRotation = (360 * 5) - targetAngle
-
-      // Animación de la bola (simplificada)
-      ball.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)' // Ease-out
-      ball.style.transform = `rotate(${totalRotation + 360}deg)` // La bola gira "más"
-      
-      // Animación de la ruleta
-      wheel.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)'
-      wheel.style.transform = `rotate(${totalRotation}deg)`
-
+      // 5 rotaciones completas + el ángulo de detención
+      // Usamos + targetAngle porque nuestro array y rotación ahora son horarios
+      const totalRotation = (360 * 5) + targetAngle;
+  
+      // Animación de la ruleta (nuestra imagen)
+      wheel.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)';
+      wheel.style.transform = `rotate(${totalRotation}deg)`;
+  
       setTimeout(() => {
         // Resetear transiciones para el próximo giro
-        wheel.style.transition = 'none'
-        ball.style.transition = 'none'
-
-        // "Fijar" la rotación para que no se resetee visualmente
-        const finalRotation = totalRotation % 360
-        wheel.style.transform = `rotate(${finalRotation}deg)`
-        ball.style.transform = `rotate(${finalRotation}deg)` // Sincronizar bola
-
-        resolve()
-      }, 4100) // 4.1 segundos
-    })
+        wheel.style.transition = 'none';
+  
+        // "Fijar" la rotación final para que no se resetee visualmente
+        // Usamos % 360 para evitar que el valor de rotación crezca indefinidamente
+        const finalRotation = totalRotation % 360;
+        wheel.style.transform = `rotate(${finalRotation}deg)`;
+  
+        resolve();
+      }, 4100); // 4.1 segundos
+    });
   }
 
   function showResultDisplay(message, type) {
