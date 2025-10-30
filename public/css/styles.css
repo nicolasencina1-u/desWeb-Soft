@@ -779,7 +779,7 @@ main {
     top: 0;
     left: 0;
     width: 100%; /* Modificado */
-    height: 100%; /* Modificado */
+    height: 210px; /* Corregido al radio real (420px / 2) */
     transform-origin: center center; /* Modificado */
     /* Se eliminó display: flex y justify-content */
 }
@@ -1068,13 +1068,13 @@ main {
     }
     .number-slot {
         width: 32.5px;
-        height: 228px;
+        height: 260px;
     }
     .number-slot .number-text {
         font-size: 1.2rem;
     }
     #ball {
-        transform-origin: 7.5px 267.5px;
+        transform-origin: 7.5px 250px;
     }
 }
 
