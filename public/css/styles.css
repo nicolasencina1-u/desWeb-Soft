@@ -3,6 +3,12 @@
   --red: #EF3054;
   --yellow: #E6B800;
   --yellow-alt: #FFCC00;
+  --roulette-red: #CC0000;
+  --roulette-black: #222222;
+  --roulette-green: #0A8754;
+  --roulette-gold: #E6B800;
+  --roulette-wood: #5A3822;
+  --betting-green: #075A3A;
 }
 
 * {
@@ -613,11 +619,463 @@ main {
 
 
 
-/* ================== MESA DE RULETA FULLSCREEN ================== */
+/* ================== MESA DE RULETA ================== */
 
-.mesa-ruleta {
+/* --- Layout Principal de la Página de Ruleta --- */
+/* Diseñado para 1920x1080 */
+.roulette-container {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Columna fija para info, resto para juego */
+    grid-template-rows: 1fr;
+    height: calc(100vh - 120px); /* Altura completa menos el header */
+    width: 100%;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* --- Panel de Información (Izquierda) --- */
+.game-info-panel {
+    background: #0d0d0d;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-right: 2px solid var(--roulette-gold);
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.game-info-panel .info-box {
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid #333;
+}
+
+.game-info-panel h1 {
+    font-size: 1.5rem;
+    color: var(--yellow);
+    margin-bottom: 5px;
+}
+.game-info-panel h2 {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.game-info-panel h3 {
+    font-size: 1rem;
+    color: var(--yellow-alt);
+    border-bottom: 1px solid #444;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.game-info-panel .balance-box span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--green);
+}
+
+#last-numbers-list {
+    display: flex;
+    gap: 5px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+#last-numbers-list li {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 50%;
+    color: #fff;
+    border: 1px solid #555;
+}
+.number-rojo { background: var(--roulette-red); }
+.number-negro { background: var(--roulette-black); color: #fff; }
+.number-verde { background: var(--roulette-green); }
+
+#last-bets-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#last-bets-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+#last-bets-list .result-win { color: var(--green); font-weight: bold; }
+#last-bets-list .result-lose { color: var(--red); }
+
+/* --- Área de Juego (Derecha) --- */
+.game-area {
+    display: grid;
+    /* Grid complejo para posicionar todo */
+    grid-template-columns: 1fr 1.5fr; /* Ruleta | Tablero */
+    grid-template-rows: 1fr auto; /* (Ruleta/Tablero) / Controles */
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden;
+}
+
+/* --- Contenedor de la Ruleta (Arriba-Izquierda) --- */
+.wheel-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 450px;
+    min-height: 450px;
+}
+
+#roulette-wheel {
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background-color: var(--roulette-wood);
+    border: 10px solid #333;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7) inset, 0 0 15px rgba(0,0,0,0.5);
+    position: relative;
+}
+.wheel-outer-border {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid var(--roulette-gold);
+    padding: 15px;
+    box-sizing: border-box;
+}
+.wheel-inner-border {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #1a1a1a;
+    position: relative;
+    border: 2px solid #555;
+}
+
+.wheel-numbers {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 50%;
+}
+
+.number-slot {
     position: absolute;
-    left: 10;
+    top: 0;
+    left: 50%;
+    transform-origin: 50% 100%;
+    width: 26.5px; /* Ancho del slot (3.14 * 370) / 37 slots */
+    height: 185px; /* Mitad del diámetro interior */
+    transform-origin: bottom center;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid #444; */
+}
+.number-slot .number-text {
+    display: block;
+    transform: rotate(180deg);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    padding-top: 10px;
+    text-shadow: 0 0 2px rgba(0,0,0,0.7);
+}
+
+/* Colorear y posicionar cada slot (360 / 37 = 9.73 deg) */
+.number-slot[data-number="0"]  { transform: rotate(calc(9.73deg * 0));  background: var(--roulette-green); }
+.number-slot[data-number="32"] { transform: rotate(calc(9.73deg * 1));  background: var(--roulette-red); }
+.number-slot[data-number="15"] { transform: rotate(calc(9.73deg * 2));  background: var(--roulette-black); }
+.number-slot[data-number="19"] { transform: rotate(calc(9.73deg * 3));  background: var(--roulette-red); }
+.number-slot[data-number="4"]  { transform: rotate(calc(9.73deg * 4));  background: var(--roulette-black); }
+.number-slot[data-number="21"] { transform: rotate(calc(9.73deg * 5));  background: var(--roulette-red); }
+.number-slot[data-number="2"]  { transform: rotate(calc(9.73deg * 6));  background: var(--roulette-black); }
+.number-slot[data-number="25"] { transform: rotate(calc(9.73deg * 7));  background: var(--roulette-red); }
+.number-slot[data-number="17"] { transform: rotate(calc(9.73deg * 8));  background: var(--roulette-black); }
+.number-slot[data-number="34"] { transform: rotate(calc(9.73deg * 9));  background: var(--roulette-red); }
+.number-slot[data-number="6"]  { transform: rotate(calc(9.73deg * 10)); background: var(--roulette-black); }
+.number-slot[data-number="27"] { transform: rotate(calc(9.73deg * 11)); background: var(--roulette-red); }
+.number-slot[data-number="13"] { transform: rotate(calc(9.73deg * 12)); background: var(--roulette-black); }
+.number-slot[data-number="36"] { transform: rotate(calc(9.73deg * 13)); background: var(--roulette-red); }
+.number-slot[data-number="11"] { transform: rotate(calc(9.73deg * 14)); background: var(--roulette-black); }
+.number-slot[data-number="30"] { transform: rotate(calc(9.73deg * 15)); background: var(--roulette-red); }
+.number-slot[data-number="8"]  { transform: rotate(calc(9.73deg * 16)); background: var(--roulette-black); }
+.number-slot[data-number="23"] { transform: rotate(calc(9.73deg * 17)); background: var(--roulette-red); }
+.number-slot[data-number="10"] { transform: rotate(calc(9.73deg * 18)); background: var(--roulette-black); }
+.number-slot[data-number="5"]  { transform: rotate(calc(9.73deg * 19)); background: var(--roulette-red); }
+.number-slot[data-number="24"] { transform: rotate(calc(9.73deg * 20)); background: var(--roulette-black); }
+.number-slot[data-number="16"] { transform: rotate(calc(9.73deg * 21)); background: var(--roulette-red); }
+.number-slot[data-number="33"] { transform: rotate(calc(9.73deg * 22)); background: var(--roulette-black); }
+.number-slot[data-number="1"]  { transform: rotate(calc(9.73deg * 23)); background: var(--roulette-red); }
+.number-slot[data-number="20"] { transform: rotate(calc(9.73deg * 24)); background: var(--roulette-black); }
+.number-slot[data-number="14"] { transform: rotate(calc(9.73deg * 25)); background: var(--roulette-red); }
+.number-slot[data-number="31"] { transform: rotate(calc(9.73deg * 26)); background: var(--roulette-black); }
+.number-slot[data-number="9"]  { transform: rotate(calc(9.73deg * 27)); background: var(--roulette-red); }
+.number-slot[data-number="22"] { transform: rotate(calc(9.73deg * 28)); background: var(--roulette-black); }
+.number-slot[data-number="18"] { transform: rotate(calc(9.73deg * 29)); background: var(--roulette-red); }
+.number-slot[data-number="29"] { transform: rotate(calc(9.73deg * 30)); background: var(--roulette-black); }
+.number-slot[data-number="7"]  { transform: rotate(calc(9.73deg * 31)); background: var(--roulette-red); }
+.number-slot[data-number="28"] { transform: rotate(calc(9.73deg * 32)); background: var(--roulette-black); }
+.number-slot[data-number="12"] { transform: rotate(calc(9.73deg * 33)); background: var(--roulette-red); }
+.number-slot[data-number="35"] { transform: rotate(calc(9.73deg * 34)); background: var(--roulette-black); }
+.number-slot[data-number="3"]  { transform: rotate(calc(9.73deg * 35)); background: var(--roulette-red); }
+.number-slot[data-number="26"] { transform: rotate(calc(9.73deg * 36)); background: var(--roulette-black); }
+
+.wheel-center-hub {
+    width: 80px;
+    height: 80px;
+    background: var(--roulette-gold);
+    border: 5px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) inset;
+}
+
+#ball {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px; /* Posición inicial en el borde */
+    left: calc(50% - 7.5px);
+    z-index: 10;
+    box-shadow: 0 0 5px rgba(255,255,255,0.7);
+    transform-origin: 7.5px 217.5px; /* (ancho/2) (radio - (top/2)) */
+}
+
+#result-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    border: 2px solid var(--roulette-gold);
+    padding: 10px 20px;
+    border-radius: 8px;
+    z-index: 20;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.result-display-rojo { border-color: var(--roulette-red) !important; }
+.result-display-negro { border-color: #555 !important; }
+.result-display-verde { border-color: var(--roulette-green) !important; }
+.result-display-error { border-color: var(--red) !important; }
+
+
+/* --- Controles (Abajo) --- */
+.controls-container {
+    grid-column: 1 / 3; /* Ocupa todo el ancho inferior */
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    border-top: 2px solid var(--roulette-gold);
+}
+
+.chip-selection {
+    display: flex;
+    gap: 10px;
+}
+.chip {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid #777;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.chip:hover {
+    transform: translateY(-2px);
+}
+.chip.active {
+    border-color: var(--yellow-alt);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--yellow-alt);
+}
+
+.chip[data-value="100"] { background: #fff; }
+.chip[data-value="500"] { background: var(--red); color: #fff; }
+.chip[data-value="1000"] { background: var(--yellow); }
+.chip[data-value="5000"] { background: #4a90e2; }
+.chip[data-value="10000"] { background: #333; color: #fff; }
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+.action-buttons .btn {
+    min-width: 150px;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+/* --- Tablero de Apuestas (Arriba-Derecha) --- */
+.betting-layout-container {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background: var(--betting-green);
+    border-radius: 10px;
+    padding: 15px;
+    border: 5px solid var(--roulette-wood);
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+.betting-total {
+    font-size: 1.2rem;
+    color: var(--yellow);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.betting-layout {
+    display: grid;
+    grid-template-columns: 50px 1fr; /* 0 | Resto */
+    grid-template-rows: 1fr auto; /* Números | Apuestas externas */
+    flex-grow: 1;
+    gap: 5px;
+}
+
+.bet-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    position: relative;
+    font-size: 1.1rem;
+}
+.bet-option:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.number-0 {
+    grid-row: 1 / 2;
+    background: var(--roulette-green);
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(13, 1fr); /* 12 números + 2:1 */
+    grid-template-rows: repeat(3, 1fr);
+    gap: 2px;
+}
+.main-grid .bet-option {
+    min-height: 60px;
+}
+.main-grid .bet-2to1 {
+    background: var(--betting-green);
+    border-left: 2px solid #ccc;
+}
+
+.outside-bets {
+    grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+}
+.outside-bets .bet-option {
+    min-height: 50px;
+    background: var(--betting-green);
+}
+.outside-bets .bet-dozen {
+    grid-column: span 2;
+}
+.bet-red { background: var(--roulette-red) !important; }
+.bet-black { background: var(--roulette-black) !important; }
+
+/* Colores de números en el tablero */
+.number-red { background: var(--roulette-red); }
+.number-black { background: var(--roulette-black); }
+
+/* Fichas Puestas en el Tablero */
+.placed-chip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #000;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    pointer-events: none; /* Para poder seguir clickeando */
+}
+
+.placed-chip.chip-value-100 { background: #fff; }
+.placed-chip.chip-value-500 { background: var(--red); color: #fff; }
+.placed-chip.chip-value-1000 { background: var(--yellow); }
+.placed-chip.chip-value-5000 { background: #4a90e2; }
+.placed-chip.chip-value-10000 { background: #333; color: #fff; }
+
+/* Responsive para pantallas muy anchas */
+@media (min-width: 1900px) {
+    .roulette-container {
+        grid-template-columns: 400px 1fr;
+    }
+    .game-info-panel {
+        font-size: 1rem;
+    }
+    .wheel-container {
+        min-width: 550px;
+        min-height: 550px;
+    }
+    #roulette-wheel {
+        width: 550px;
+        height: 550px;
+    }
+    .number-slot {
+        width: 32.5px;
+        height: 228px;
+    }
+    .number-slot .number-text {
+        font-size: 1.2rem;
+    }
+    #ball {
+        transform-origin: 7.5px 267.5px;
+    }
 }
 
 /* RESPONSIVO */
