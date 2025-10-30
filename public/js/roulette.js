@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- MAPEO DE NÚMEROS DE LA RULETA ---
   // Orden de los números en el HTML/CSS
   const wheelNumbersOrder = [
-    0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 
-    24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
-  ]
+    0, 26, 3, 35, 12, 28, 7, 29, 18, 22, 9, 31, 14, 20, 1, 33, 16, 24, 5, 10, 
+    23, 8, 30, 11, 36, 13, 27, 6, 34, 17, 25, 2, 21, 4, 19, 15, 32
+  ];
   
   const numberColors = {
     0: 'verde', 1: 'rojo', 2: 'negro', 3: 'rojo', 4: 'negro', 5: 'rojo', 6: 'negro', 7: 'rojo', 8: 'negro', 9: 'rojo', 10: 'negro',
