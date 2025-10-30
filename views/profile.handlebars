@@ -5,80 +5,61 @@
 
        <div class="seccion-perfil">
          <h2>Información Personal</h2>
-
+         
          <div class="info-usuario">
            <p><strong>Usuario:</strong> {{usuario.user}}</p>
+           
            <p><strong>Nombre:</strong> {{usuario.name}} {{usuario.surname}}</p>
-
+           
            <p><strong>RUT:</strong> {{usuario.rut}}</p>
-
+           
            <p><strong>Email:</strong> {{usuario.mail}}</p>
          </div>
        </div>
 
        <div class="seccion-perfil">
          <h2>Saldo Actual</h2>
-
+         
          <div class="saldo-actual">
-           <p class="monto-saldo">$64.920 CLP</p>
+           <p class="monto-saldo">{{formatCurrency usuario.balance}} CLP</p>
          </div>
        </div>
 
        <div class="seccion-perfil">
          <h2>Últimas Transacciones</h2>
-
+         
          <div class="tabla-transacciones">
            <table>
              <thead>
                <tr>
                  <th>Fecha</th>
-
+                 
                  <th>Tipo</th>
-
+                 
+                 <th>Detalle</th>
+                 
                  <th>Monto</th>
                </tr>
              </thead>
-
+             
              <tbody>
-               <tr>
-                 <td>15/03/2025</td>
-
-                 <td>Depósito</td>
-
-                 <td class="monto-positivo">+$20.000</td>
-               </tr>
-
-               <tr>
-                 <td>14/03/2025</td>
-
-                 <td>Apuesta</td>
-
-                 <td class="monto-negativo">-$5.000</td>
-               </tr>
-
-               <tr>
-                 <td>13/03/2025</td>
-
-                 <td>Ganancia</td>
-
-                 <td class="monto-positivo">+$15.000</td>
-               </tr>
-
-               <tr>
-                 <td>12/03/2025</td>
-
-                 <td>Apuesta</td>
-
-                 <td class="monto-negativo">-$3.500</td>
-               </tr>
-
-               <tr>
-                 <td>11/03/2025</td>
-
-                 <td>Depósito</td>
-
-                 <td class="monto-positivo">+$30.000</td>
-               </tr>
+                {{#each transacciones}}
+                  <tr>
+                    <td>{{formatDate this.timestamp}}</td>
+                    
+                    <td>{{this.type}}</td>
+                    
+                    <td>{{this.betType}}</td>
+                    
+                    <td class="{{#ifCond this.type 'deposit'}}monto-positivo{{/ifCond}}{{#ifCond this.type 'win'}}monto-positivo{{/ifCond}}{{#ifCond this.type 'withdrawal'}}monto-negativo{{/ifCond}}{{#ifCond this.type 'bet'}}monto-negativo{{/ifCond}}">
+                      {{formatCurrency this.amount}}
+                    </td>
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td colspan="4">No hay transacciones recientes.</td>
+                  </tr>
+                {{/each}}
              </tbody>
            </table>
          </div>
