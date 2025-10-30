@@ -189,40 +189,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function spinWheel(winningNumber) {
     return new Promise(resolve => {
-      // Busca el índice del número ganador en nuestro nuevo array horario
+      // 1. Busca el índice del número ganador en nuestro array ANTI-HORARIO
       const index = wheelNumbersOrder.indexOf(winningNumber);
       const slotAngle = 360 / wheelNumbersOrder.length;
       
-      // Calcula el ángulo de detención (centrado en el slot)
+      // 2. Calcula el ángulo de detención (centrado en el slot)
       const targetAngle = (index * slotAngle) + (slotAngle / 2);
       
-      // 5 rotaciones completas + el ángulo de detención
-      // Usamos + targetAngle porque nuestro array y rotación ahora son horarios
-      const totalRotation = (360 * 5) + targetAngle;
+      // 3. CÁLCULO DE LA RULETA (IMAGEN)
+      // 5 rotaciones (sentido horario) + la posición final ANTI-HORARIA (-targetAngle)
+      const wheelRotation = (360 * 5) - targetAngle;
 
+      // 4. CÁLCULO DE LA BOLA
+      // 8 rotaciones (sentido anti-horario) + la misma posición final ANTI-HORARIA (-targetAngle)
+      // La bola gira en dirección opuesta, pero ambas deben aterrizar en el mismo ángulo.
       const ballRotation = (360 * -8) - targetAngle;
-  
+
+      // 5. ANIMACIÓN
+      
       // Animación de la ruleta (imagen)
-      wheel.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)';
-      wheel.style.transform = `rotate(${totalRotation}deg)`;
+      wheel.style.transition = 'all 4s cubic-bezier(0.2, 0.8, 0.7, 1)'; // Ease-out
+      wheel.style.transform = `rotate(${wheelRotation}deg)`;
 
       // Animación de la bola
       ball.style.transition = 'all 4s cubic-bezier(0.1, 0.5, 0.3, 1)'; // Diferente ease
       ball.style.transform = `rotate(${ballRotation}deg)`;
-  
+
+
       setTimeout(() => {
+        // 6. RESETEO
         // Resetear transiciones para el próximo giro
         wheel.style.transition = 'none';
         ball.style.transition = 'none';
-  
-        // "Fijar" la rotación final para que no se resetee visualmente
-        // Usamos % 360 para evitar que el valor de rotación crezca indefinidamente
-        const finalRotation = totalRotation % 360;
-        const finalBallRotation = ballRotation % 360;
-        
+
+        // "Fijar" la rotación final (un valor entre -360 y 0)
+        const finalRotation = wheelRotation % 360;
+
+        // Ambas deben fijarse en la misma rotación final
         wheel.style.transform = `rotate(${finalRotation}deg)`;
-        ball.style.transform = `rotate(${finalBallRotation}deg)`;
-  
+        ball.style.transform = `rotate(${finalRotation}deg)`;
+
         resolve();
       }, 4100); // 4.1 segundos
     });
