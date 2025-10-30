@@ -195,10 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // 2. Calcula el ángulo de detención (centrado en el slot)
       const targetAngle = (index * slotAngle);
-      
+      const randomAngle = Math.random() * 360;
+
       // 3. CÁLCULO DE LA RULETA (IMAGEN)
       // 5 rotaciones (sentido horario) + la posición final ANTI-HORARIA (-targetAngle)
-      const wheelRotation = (360 * 9) + targetAngle;
+      const wheelRotation = (360 * 9) + targetAngle + randomAngle;
 
       // 4. CÁLCULO DE LA BOLA
       // 8 rotaciones (sentido anti-horario) + la misma posición final ANTI-HORARIA (-targetAngle)
