@@ -622,7 +622,7 @@ main {
 /* ================== MESA DE RULETA ================== */
 
 .btn-girar {
-    background:             var(--betting-green);
+    background:             var(--green);
     color:                  #FFF;
     padding:                12px 30px;
     font-size:              1.2rem;
@@ -630,7 +630,8 @@ main {
 }
 
 .btn-girar:hover {
-    background:             var(--green);
+    background:             #FFF;
+    color:                  var(--green);
     transform:              translateY(-3px);
 }
 
