@@ -742,123 +742,17 @@ main {
 }
 
 #roulette-wheel {
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background-color: var(--roulette-wood);
-    border: 10px solid #333;
-    box-shadow: 0 0 20px rgba(0,0,0,0.7) inset, 0 0 15px rgba(0,0,0,0.5);
-    position: relative;
-}
-.wheel-outer-border {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 5px solid var(--roulette-gold);
-    padding: 15px;
-    box-sizing: border-box;
-}
-.wheel-inner-border {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: #1a1a1a;
-    position: relative;
-    border: 2px solid #555;
-}
-
-.wheel-numbers {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border-radius: 50%;
-}
-
-.number-slot {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform-origin: 50% 100%;
-    width: 26.5px; /* Ancho del slot (3.14 * 370) / 37 slots */
-    height: 185px; /* Mitad del diámetro interior */
-    transform-origin: bottom center;
-    display: flex;
-    justify-content: center;
-    /* border: 1px solid #444; */
-}
-.number-slot .number-text {
-    display: block;
-    transform: rotate(180deg);
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    padding-top: 10px;
-    text-shadow: 0 0 2px rgba(0,0,0,0.7);
-}
-
-/* Colorear y posicionar cada slot (360 / 37 = 9.73 deg) */
-.number-slot[data-number="0"]  { transform: translateX(-50%) rotate(calc(9.73deg * 0));  background: var(--roulette-green); }
-.number-slot[data-number="32"] { transform: translateX(-50%) rotate(calc(9.73deg * 1));  background: var(--roulette-red); }
-.number-slot[data-number="15"] { transform: translateX(-50%) rotate(calc(9.73deg * 2));  background: var(--roulette-black); }
-.number-slot[data-number="19"] { transform: translateX(-50%) rotate(calc(9.73deg * 3));  background: var(--roulette-red); }
-.number-slot[data-number="4"]  { transform: translateX(-50%) rotate(calc(9.73deg * 4));  background: var(--roulette-black); }
-.number-slot[data-number="21"] { transform: translateX(-50%) rotate(calc(9.73deg * 5));  background: var(--roulette-red); }
-.number-slot[data-number="2"]  { transform: translateX(-50%) rotate(calc(9.73deg * 6));  background: var(--roulette-black); }
-.number-slot[data-number="25"] { transform: translateX(-50%) rotate(calc(9.73deg * 7));  background: var(--roulette-red); }
-.number-slot[data-number="17"] { transform: translateX(-50%) rotate(calc(9.73deg * 8));  background: var(--roulette-black); }
-.number-slot[data-number="34"] { transform: translateX(-50%) rotate(calc(9.73deg * 9));  background: var(--roulette-red); }
-.number-slot[data-number="6"]  { transform: translateX(-50%) rotate(calc(9.73deg * 10)); background: var(--roulette-black); }
-.number-slot[data-number="27"] { transform: translateX(-50%) rotate(calc(9.73deg * 11)); background: var(--roulette-red); }
-.number-slot[data-number="13"] { transform: translateX(-50%) rotate(calc(9.73deg * 12)); background: var(--roulette-black); }
-.number-slot[data-number="36"] { transform: translateX(-50%) rotate(calc(9.73deg * 13)); background: var(--roulette-red); }
-.number-slot[data-number="11"] { transform: translateX(-50%) rotate(calc(9.73deg * 14)); background: var(--roulette-black); }
-.number-slot[data-number="30"] { transform: translateX(-50%) rotate(calc(9.73deg * 15)); background: var(--roulette-red); }
-.number-slot[data-number="8"]  { transform: translateX(-50%) rotate(calc(9.73deg * 16)); background: var(--roulette-black); }
-.number-slot[data-number="23"] { transform: translateX(-50%) rotate(calc(9.73deg * 17)); background: var(--roulette-red); }
-.number-slot[data-number="10"] { transform: translateX(-50%) rotate(calc(9.73deg * 18)); background: var(--roulette-black); }
-.number-slot[data-number="5"]  { transform: translateX(-50%) rotate(calc(9.73deg * 19)); background: var(--roulette-red); }
-.number-slot[data-number="24"] { transform: translateX(-50%) rotate(calc(9.73deg * 20)); background: var(--roulette-black); }
-.number-slot[data-number="16"] { transform: translateX(-50%) rotate(calc(9.73deg * 21)); background: var(--roulette-red); }
-.number-slot[data-number="33"] { transform: translateX(-50%) rotate(calc(9.73deg * 22)); background: var(--roulette-black); }
-.number-slot[data-number="1"]  { transform: translateX(-50%) rotate(calc(9.73deg * 23)); background: var(--roulette-red); }
-.number-slot[data-number="20"] { transform: translateX(-50%) rotate(calc(9.73deg * 24)); background: var(--roulette-black); }
-.number-slot[data-number="14"] { transform: translateX(-50%) rotate(calc(9.73deg * 25)); background: var(--roulette-red); }
-.number-slot[data-number="31"] { transform: translateX(-50%) rotate(calc(9.73deg * 26)); background: var(--roulette-black); }
-.number-slot[data-number="9"]  { transform: translateX(-50%) rotate(calc(9.73deg * 27)); background: var(--roulette-red); }
-.number-slot[data-number="22"] { transform: translateX(-50%) rotate(calc(9.73deg * 28)); background: var(--roulette-black); }
-.number-slot[data-number="18"] { transform: translateX(-50%) rotate(calc(9.73deg * 29)); background: var(--roulette-red); }
-.number-slot[data-number="29"] { transform: translateX(-50%) rotate(calc(9.73deg * 30)); background: var(--roulette-black); }
-.number-slot[data-number="7"]  { transform: translateX(-50%) rotate(calc(9.73deg * 31)); background: var(--roulette-red); }
-.number-slot[data-number="28"] { transform: translateX(-50%) rotate(calc(9.73deg * 32)); background: var(--roulette-black); }
-.number-slot[data-number="12"] { transform: translateX(-50%) rotate(calc(9.73deg * 33)); background: var(--roulette-red); }
-.number-slot[data-number="35"] { transform: translateX(-50%) rotate(calc(9.73deg * 34)); background: var(--roulette-black); }
-.number-slot[data-number="3"]  { transform: translateX(-50%) rotate(calc(9.73deg * 35)); background: var(--roulette-red); }
-.number-slot[data-number="26"] { transform: translateX(-50%) rotate(calc(9.73deg * 36)); background: var(--roulette-black); }
-
-.wheel-center-hub {
-    width: 80px;
-    height: 80px;
-    background: var(--roulette-gold);
-    border: 5px solid #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5) inset;
-}
-
-#ball {
-    width: 15px;
-    height: 15px;
-    background: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 25px; /* Posición inicial en el borde */
-    left: calc(50% - 7.5px);
-    z-index: 10;
-    box-shadow: 0 0 5px rgba(255,255,255,0.7);
-    transform-origin: 7.5px 217.5px; /* (ancho/2) (radio - (top/2)) */
+  /* Mismo tamaño que la ruleta anterior */
+  width: 450px;
+  height: 450px;
+  
+  /* Mantenemos el borde, sombra y radio del contenedor original */
+  border-radius: 50%;
+  border: 10px solid #333;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7) inset, 0 0 15px rgba(0,0,0,0.5);
+  
+  /* Importante para que la rotación JS funcione */
+  position: relative;
 }
 
 #result-display {
@@ -1062,19 +956,10 @@ main {
         min-width: 550px;
         min-height: 550px;
     }
+
     #roulette-wheel {
         width: 550px;
         height: 550px;
-    }
-    .number-slot {
-        width: 32.5px;
-        height: 228px;
-    }
-    .number-slot .number-text {
-        font-size: 1.2rem;
-    }
-    #ball {
-        transform-origin: 7.5px 267.5px;
     }
 }
 
