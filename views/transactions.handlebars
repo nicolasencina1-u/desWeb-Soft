@@ -3,25 +3,62 @@
     <div class="texto-bienvenida">
       <h1>Transacciones</h1>
 
-      <p>Aquí puedes depositar y retirar de tu cuenta del casino. El saldo (no) se actualizará automáticamente.</p>
+      <p>Aquí puedes depositar y retirar de tu cuenta del casino.
+      El saldo se actualizará automáticamente después de cada transacción.</p>
 
-      <h2><span class="saldo">Saldo actual: </span>$64.920 CLP</h2>
+      <h2><span class="saldo">Saldo actual: </span>{{formatCurrency usuario.balance}}</h2>
 
-      <form id="form-deposito">
+      <form id="form-deposito" action="{{url 'deposit'}}" method="POST">
         <label for="monto-deposito">Monto a depositar:</label><br>
-
-        <input type="number" id="monto-deposito" min="1" required>
-
+        <input type="number" id="monto-deposito" name="monto-deposito" min="1" required>
         <button type="submit" class="btn btn-jugar">Depositar</button>
       </form>
 
-      <form id="form-retiro">
+      <form id="form-retiro" action="{{url 'withdraw'}}" method="POST">
         <label for="monto-retiro">Monto a retirar:</label><br>
-
-        <input type="number" id="monto-retiro" min="1" required>
-
+        <input type="number" id="monto-retiro" name="monto-retiro" min="1" required>
         <button type="submit" class="btn btn-jugar">Retirar</button>
       </form>
+
+      <div class="seccion-perfil" style="margin-top: 20px;">
+        <h2>Historial de Transacciones</h2>
+        
+        <div class="tabla-transacciones">
+          <table>
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                
+                <th>Tipo</th>
+                
+                <th>Detalle</th>
+                
+                <th>Monto</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              {{#each transacciones}}
+                <tr>
+                  <td>{{formatDate this.timestamp}}</td>
+                    
+                  <td>{{this.type}}</td>
+                    
+                  <td>{{this.betType}}</td>
+                    
+                  <td class="{{#ifCond this.type 'deposit'}}monto-positivo{{/ifCond}}{{#ifCond this.type 'win'}}monto-positivo{{/ifCond}}{{#ifCond this.type 'withdrawal'}}monto-negativo{{/ifCond}}{{#ifCond this.type 'bet'}}monto-negativo{{/ifCond}}">
+                    {{formatCurrency this.amount}}
+                  </td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan="4">No hay transacciones registradas.</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </section>
 
