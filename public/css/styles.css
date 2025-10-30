@@ -622,21 +622,21 @@ main {
 /* ================== MESA DE RULETA ================== */
 
 .btn-girar {
-    background:             var(--green);
-    color:                  #000000;
+    background:             var(--betting-green);
+    color:                  #FFF;
     padding:                12px 30px;
     font-size:              1.2rem;
     align-self:             flex-start;
 }
 
 .btn-girar:hover {
-    background:             var(--betting-green);
-    transform:              translateY(-2px);
+    background:             var(--green);
+    transform:              translateY(-3px);
 }
 
 .btn-limpiar {
     background:             var(--red);
-    color:                  #000000;
+    color:                  #FFF;
     padding:                12px 30px;
     font-size:              1.2rem;
     align-self:             flex-start;
@@ -644,7 +644,7 @@ main {
 
 .btn-limpiar:hover {
     background:             var(--roulette-red);
-    transform:              translateY(-2px);
+    transform:              translateY(-3px);
 }
 
 .roulette-container {
