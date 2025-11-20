@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
 const app = express()
-const port = 80
+const port = 4000
 
 // Redirecciones
 const appRoutes = {
