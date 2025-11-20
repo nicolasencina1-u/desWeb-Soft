@@ -76,7 +76,7 @@ app.engine('handlebars', engine({
   }
 }))
 app.set('view engine', 'handlebars')
-app.set('views', './views')
+app.set('views', '.')
 
 // Archivos estaticos
 app.use(express.static('public'))
