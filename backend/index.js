@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const fs = require('fs')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
+const cors = require('cors')
 
 const app = express()
 const port = 4000
@@ -74,14 +75,13 @@ app.engine('handlebars', engine({
     }
   }
 }))
-app.set('view engine', 'handlebars')
-app.set('views', './views')
 
 // Archivos estaticos
 app.use(express.static('public'))
 // Leer datos de formularios y JSON
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cors())
 
 // Middlewares
 app.use(cookieParser())
@@ -172,61 +172,9 @@ const PartidaRuletaSchema = new mongoose.Schema({
 
 const PartidaRuleta = mongoose.model('PartidaRuleta', PartidaRuletaSchema)
 
-// ==============================
-//              HOME
-// ==============================
-app.get('/', (req, res) => {
-  res.render('home', {
-    pageTitle: 'Inicio'
-  })
-})
-
-// ==============================
-//            ACCOUNT
-// ==============================
-app.get('/account', (req, res) => {
-  res.redirect(appRoutes.profile)
-})
-
-          // =========
-          //  PROFILE
-          // =========
-app.get(appRoutes.profile, requireAuth, async (req, res) => {
-  try {
-    const usuario = await Usuario.findById(res.locals.userId).lean()
-
-    if (!usuario) {
-      return res.redirect(appRoutes.logout)
-    }
-
-    const transacciones = await Transaccion.find({ userId: res.locals.userId }).sort({ timestamp: -1 }).limit(5).lean()
-
-    res.render('profile', {
-      pageTitle: 'Perfil',
-      usuario: usuario,
-      transacciones: transacciones
-    })
-
-  } catch (err) {
-    console.error('Error al buscar perfil de usuario:', err)
-    res.send('Error al cargar el perfil.')
-  }
-})
-
           // ==========
           //  REGISTER
           // ==========
-app.get('/register', (req, res) => {
-  res.redirect(appRoutes.register)
-})
-
-app.get(appRoutes.register, redirectIfAuth, (req, res) => {
-  res.render('register', {
-    layout: 'clean',
-    pageTitle: 'Registro'
-  })
-})
-
 app.post(appRoutes.register, async (req, res) => {
   const { name, surname, user, birth, rut, mail, password, 'password-confirm': passwordConfirm } = req.body
 
@@ -274,17 +222,6 @@ app.post(appRoutes.register, async (req, res) => {
           // =======
           //  LOGIN
           // =======
-app.get('/login', (req, res) => {
-  res.redirect(appRoutes.login)
-})
-
-app.get(appRoutes.login, redirectIfAuth, (req, res) => {
-  res.render('login', {
-    layout: 'clean',
-    pageTitle: 'Inicio de sesión'
-  })
-})
-
 app.post(appRoutes.login, async (req, res) => {
   const { rut, password } = req.body
 
@@ -310,38 +247,6 @@ app.post(appRoutes.login, async (req, res) => {
   } catch (err) {
     console.error('Error al iniciar sesión:', err)
     res.send('Error interno del servidor')
-  }
-})
-
-          // ========
-          //  LOGOUT
-          // ========
-app.get(appRoutes.logout, requireAuth, (req, res) => {
-  res.clearCookie('usuario_id')
-  res.clearCookie('username')
-  res.redirect(appRoutes.login)
-})
-
-          // ==============
-          //  TRANSACTIONS
-          // ==============
-app.get(appRoutes.transactions, requireAuth, async (req, res) => {
-  try {
-      const usuario = await Usuario.findById(res.locals.userId).lean()
-      if (!usuario) {
-          return res.redirect(appRoutes.logout)
-      }
-
-      const transacciones = await Transaccion.find({ userId: res.locals.userId }).sort({ timestamp: -1 }).limit(10).lean()
-
-      res.render('transactions', {
-        pageTitle: 'Transacciones',
-        usuario: usuario,
-        transacciones: transacciones
-      })
-  } catch (err) {
-      console.error('Error al cargar transacciones:', err)
-      res.send('Error al cargar la página de transacciones.')
   }
 })
 
@@ -418,27 +323,6 @@ app.post(appRoutes.withdraw, requireAuth, async (req, res) => {
 })
 
 // ==============================
-//              INFO
-// ==============================
-
-          // ==========
-          //  ABOUT US
-          // ==========
-app.get(appRoutes.aboutUs, (req, res) => {
-  res.render('aboutUs', {
-    pageTitle: 'Sobre Nosotros'
-  })
-})
-          // ================
-          //  ROULETTE-RULES
-          // ================
-app.get(appRoutes.rouletteRules, (req, res) => {
-  res.render('rouletteRules', {
-    pageTitle: 'Reglas de la Ruleta'
-  })
-})
-
-// ==============================
 //           ROULETTE
 // ==============================
 const ROULETTE_NUMBERS = {
@@ -496,62 +380,6 @@ function checkWin(betType, numberData) {
 
     return false
 }
-
-app.get(appRoutes.roulette, requireAuth, async (req, res) => {
-  try {
-      const usuario = await Usuario.findById(res.locals.userId).lean()
-      if (!usuario) {
-          return res.redirect(appRoutes.logout)
-      }
-
-      const ultimosNumeros = await PartidaRuleta.find().sort({ timestamp: -1 }).limit(5).lean()
-
-      const last5BetTransactions = await Transaccion.find({ 
-          userId: res.locals.userId, 
-          type: 'bet' 
-      }).sort({ timestamp: -1 }).limit(5).lean()
-      
-      const ultimasApuestas = []
-      
-      for (const bet of last5BetTransactions) {
-          const correspondingWin = await Transaccion.findOne({
-              userId: res.locals.userId,
-              type: 'win',
-              betType: bet.betType,
-              timestamp: { 
-                  $gt: bet.timestamp,
-                  $lt: new Date(bet.timestamp.getTime() + 2000)
-              }
-          }).lean()
-      
-          if (correspondingWin) {
-              ultimasApuestas.push({
-                  betType: bet.betType,
-                  amount: correspondingWin.amount + bet.amount,
-                  type: 'win',
-                  timestamp: bet.timestamp
-              });
-          } else {
-              ultimasApuestas.push(bet)
-          }
-      }
-
-      res.render('roulette', {
-          pageTitle: 'Ruleta',
-          usuario: usuario,
-          ultimosNumeros: ultimosNumeros,
-          ultimasApuestas: ultimasApuestas,
-          gameData: JSON.stringify({
-              balance: usuario.balance,
-              lastNumbers: ultimosNumeros,
-              lastBets: ultimasApuestas
-          })
-      })
-  } catch (err) {
-      console.error('Error al cargar la página de ruleta:', err)
-      res.send('Error al cargar el juego.')
-  }
-})
 
 app.post('/roulette/spin', requireAuth, async (req, res) => {
     const { bets } = req.body
@@ -650,5 +478,5 @@ app.post('/roulette/spin', requireAuth, async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Betanito vivo (http://localhost:${port})`)
+  console.log(`Back Betanito vivo (http://localhost:${port})`)
 })
